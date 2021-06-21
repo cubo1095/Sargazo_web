@@ -2,8 +2,8 @@
 <html lang="Es"><!--Idioma Español-->
     <head>
         <meta charset="utf-8">
-        <meta name="Descripción" content="Incendios"> <!--Nos genera una descripción de la pagina-->
-        <title>Puntos GOES-16</title> <!--Titulo de la pestaña en buscador-->
+        <meta name="Descripción" content="Sargazo LANOT"> <!--Nos genera una descripción de la pagina-->
+        <title>Visulizador de Sargazo LANOT</title> <!--Titulo de la pestaña en buscador-->
         <!--meta name="viewport" content="width=device-width, user-scalable=no"--> <!--Ajusta la pagina a la pantalla-->
         <meta name="Keywords" content="Incendios, LANOT, LAGE, México"> <!--Palabras clave-->
         <link rel="styleSheet" href="static/css/Escritorio.css">
@@ -35,17 +35,17 @@
         
     </head>
     <body>
-        
+        <div id="preloader"></div>
         <header>	
             <div class="menu_bar">
                 <a><img src="static/img/32px/190-menu.png" class="menu"></a>
-                <a>Sargozo</a>
+                <a id=Sar>Visualizador de Sargazo LANOT</a>
             </div>	
                   
             <nav>
                 <ul class="menu_mapcont">
                     <li><a href="#" class="info"><img src="static/img/16px/269-info.png">Tutoriales</a></li>
-                    <li><a href="#" class="infoimage"><img src="static/img/16px/015-images.png">Descarga de imágenes GOES-16</a></li>
+                    <li><a href="#" class="infoimage"><img src="static/img/16px/015-images.png">Descarga de imágenes Sentinel</a></li>
                 </ul>
                 
             </nav>
@@ -82,6 +82,8 @@
                             <h1>Vectoriales</h1>
                             <input type="checkbox" id="sargazo" value="1" checked=""/>
                             <label for="check1">Sargazo 31/05/2021</label><br>
+                            <input type="checkbox" id="estados" value="1" checked=""/>
+                            <label for="check1">Estados</label><br>
                         </div>
                         <div class="Raster">
                             <h1>Imágenes</h1>
@@ -181,7 +183,14 @@
                             type: 'base',
                             visible: true,
                             zIndex: 0 
-                        }) 
+                        }),
+                        new ol.layer.Vector({
+                        source: new ol.source.Vector({
+                            projection: 'EPSG:32616',
+                            url: "sargazo.json",
+                            format: new ol.format.GeoJSON()
+                            })
+                        })
                     ],
                     target: 'map',//target map
 				    view: new ol.View({//Creamos vista del mapa
@@ -202,12 +211,10 @@
 					coordinateFormat: ol.coordinate.createStringXY(5),
 					undefinedHTML: '&nbsp;'
 				});//Cerramos objeto posición del mouse						
-
-                         
+                      
 
                 
 
-                // map.addLayer(vector);
                 //Layer Estados de la república 
                 var wmsSourceestados = new ol.source.TileWMS({
                     visible: true,

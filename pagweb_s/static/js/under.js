@@ -1,13 +1,13 @@
-$(document).ready(main);
+$(document).ready(under);
 
 var contador = 1;
 
-function main(){
+function under(){
   
     $('#fig').click(function(){
         if(contador == 1){
             $('.Capas').animate({right: '0%'});
-            $("#fig").css({"box-shadow": "0px 0px 15px #1689e3", "border-radius": "5px", "border": "2px solid", "border-color": "#1689e3", "background": "white"});
+            $("#fig").css({"box-shadow": "0px 0px 15px #e766f8", "border-radius": "5px", "border": "2px solid", "border-color": "#e766f8", "background": "white"});
             $('#fig').animate({right: '265px'});
             $('#fig1').animate({right: '265px'});
             $('.ol-zoom').animate({right: '265px'});
