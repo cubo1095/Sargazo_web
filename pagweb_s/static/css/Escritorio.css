@@ -110,7 +110,7 @@ header a#Sar{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding: 1% 1% 1.5% 3%;
 }
-/*Wrapper*/
+/****************************Wrapper***********************/
 #body-grapper{
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
@@ -357,7 +357,12 @@ header div.atributos img{
     }
 }
 
-/*Capas*/
+/*****************Capas****************/
+
+#sargazofecha{
+    margin-left: 20px;
+   
+}
 
 #fig{
     position: absolute;
@@ -653,15 +658,21 @@ iframe {
     bottom: 0;
     z-index: 9999;
     overflow: hidden;
-    background: #fff;
-  }
-  
+    background: rgb(121, 110, 110);
+}
+
+#preloader img{
+    position: fixed;
+    top: calc(50% - 150px);
+    left: calc(50% - 150px);
+    width: 300px;
+}
   #preloader:before {
     content: "";
     position: fixed;
     top: calc(50% - 30px);
     left: calc(50% - 30px);
-    border: 6px solid #189907;
+    border: 6px solid #2c332b;
     border-top-color: #fff;
     border-bottom-color: #fff;
     border-radius: 50%;

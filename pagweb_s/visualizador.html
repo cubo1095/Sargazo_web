@@ -24,6 +24,7 @@
         <script src="static/js/infolayer.js" type="text/javascript"></script><!--Información de puntos de calor-->
         <script src="static/js/botones.js" type="text/javascript"></script>
         <script src="static/js/slideimg.js"></script><!--Altura de simbología-->
+        <script src="static/js/sargazo.js"></script><!--Sargazo fechas display-->
         <!-- Geocoder -->
         <link rel="stylesheet" href="static/js/ol-geocoder/ol-geocoder.css">
         <script src="static/js/ol-geocoder/ol-geocoder.js" type="text/javascript"></script>
@@ -36,7 +37,7 @@
         
     </head>
     <body>
-        <div id="preloader"></div>
+        <div id="preloader"><img src="static/img/lanot_logo_b_1.png"></div>
         <header>	
             <div class="menu_bar">
                 <a><img src="static/img/32px/190-menu.png" class="menu"></a>
@@ -79,20 +80,19 @@
                         </div>
                     </div>
                     <div class="Capas">
-                        <div class="Vecotoriales">
+                        <div class="Vectoriales">
                             <h1>Vectoriales</h1>
-                            <input type="checkbox" id="sargazo_26" value="1" checked=""/>
-                            <label for="check1">Sargazo 26/05/2021</label><br>
-                            <input type="checkbox" id="sargazo_31" value="1" checked=""/>
-                            <label for="check1">Sargazo 31/05/2021</label><br>
-                            <input type="checkbox" id="sargazo_05" value="1" checked=""/>
-                            <label for="check1">Sargazo 05/05/2021</label><br>
-                            <input type="checkbox" id="estados" value="1" checked=""/>
+                            <input type="checkbox" id="sargazolight" checked/>
+                            <label id="sargazo">Sargazo</label><br>
+                            <div id="sargazofecha"></div>
+                            <input type="checkbox" id="estados" checked/>
                             <label for="check1">Estados</label><br>
+                            <input type="checkbox" id="anp" />
+                            <label for="check1">Áreas Naturales Protegidas</label><br>
                         </div>
                         <div class="Raster">
                             <h1>Imágenes</h1>
-                            <input type="checkbox" id="goes" value="1"/>
+                            <input type="checkbox" id="sentineltc" value="1"/>
                             <label for="check1">Sentinel TC</label><br>
                         </div>
                         <div class="BaseMap">
@@ -128,7 +128,7 @@
     <abbr title="Capas">    
         <div id="fig"><img src="static/img/32px/layer.png"></div>
     </abbr>
-    <abbr title="Da clic si quieres saber la información de los puntos de calor de las últimas 24 horas">
+    <abbr title="Información de las capas">
         <label id="fig1">
             <input type="checkbox" class="puntosinfo" value="0" checked="" />
             <img src="static/img/32px/Informacion.png">                                
@@ -138,16 +138,16 @@
     <div id="infopuntos"></div>
     
     
-    <abbr title="Consultas de puntos de calor">
+    <abbr title="Consultas de sargazo">
         <div id="fecha"><img src="static/img/32px/calendar.png"></div>
     </abbr>
-    <abbr title="Descarga los puntos de calor">
+    <abbr title="Descarga los poligonos de sargazo">
         <div id="download"><img src="static/img/32px/download.png"></div>
     </abbr>
     <div class="Simbologia">
         <h5>Simbología</h5>
         <div id="imagen" align="center">
-            <img src="static/img/Simbo/PuntosActuales.png" class="imgpa"/>
+            <img src="static/img/Simbo/sargazo.png" class="imgsarg"/>
             <img src="static/img/Simbo/estados.png" class="imgest"/>
             
         </div>
@@ -257,17 +257,7 @@
                     zIndex: 1
                 });
                 map.addLayer(wmsLayersargazo_26);
-                $('#sargazo_26').click(function(){
-                    var imgest =  "static/img/Simbo/estados.png";
-                    if($(this).is(':checked')){
-                        map.addLayer(wmsLayersargazo_26);
-                        $('#imagen').append('<img src="'+imgsarg+'" class="imgest"/>');
-                    } else {
-                        map.removeLayer(wmsLayersargazo_26);
-                        $('img').remove('.imgsarg');
-                    }
-                });
-
+                
 
                 //Layer Sargazo 31
                 var wmsSourcesargazo_31 = new ol.source.TileWMS({
@@ -282,17 +272,7 @@
                     zIndex: 1
                 });
                 map.addLayer(wmsLayersargazo_31);
-                $('#sargazo_31').click(function(){
-                    var imgest =  "static/img/Simbo/estados.png";
-                    if($(this).is(':checked')){
-                        map.addLayer(wmsLayersargazo_31);
-                        $('#imagen').append('<img src="'+imgsarg+'" class="imgest"/>');
-                    } else {
-                        map.removeLayer(wmsLayersargazo_31);
-                        $('img').remove('.imgsarg');
-                    }
-                });
-
+               
 
                 //Layer Sargazo 05
                 var wmsSourcesargazo_05 = new ol.source.TileWMS({
@@ -307,16 +287,7 @@
                     zIndex: 1
                 });
                 map.addLayer(wmsLayersargazo_05);
-                $('#sargazo_05').click(function(){
-                    var imgest =  "static/img/Simbo/estados.png";
-                    if($(this).is(':checked')){
-                        map.addLayer(wmsLayersargazo_05);
-                        $('#imagen').append('<img src="'+imgsarg+'" class="imgest"/>');
-                    } else {
-                        map.removeLayer(wmsLayersargazo_05);
-                        $('img').remove('.imgsarg');
-                    }
-                });
+                
 
 
                 //Layer Áreas Naturales Protegidas
@@ -344,26 +315,26 @@
                     }
                 });
                 
-                //Imagen GOES Actual
-                var wmsSourceGOES = new ol.source.TileWMS({
+                //Imagen  Sentinel TC
+                var wmsSourceSentinel = new ol.source.TileWMS({
                     visible: true,
                     url: 'http://132.247.103.145:8080/geoserver/LANOT/wms',
                     params: {'LAYERS': 'LANOT:S2_MSI_TC_20210531T160901','TILED': true},
                     serverType: 'geoserver',
                     });
 
-                var wmsLayerGOES = new  ol.layer.Tile({
-                    source: wmsSourceGOES,
+                var wmsLayerSentinel = new  ol.layer.Tile({
+                    source: wmsSourceSentinel,
                 });
-                imggeocolor = "static/img/Simbo/geocolorsim.png";
-                $('#goes').click(function(){
+                imgsentineltc = "static/img/Simbo/SentinelTC.png";
+                $('#sentineltc').click(function(){
                     heightsimbo(); //Se encuentra en el script slideimg.js y ajusta la altura de la caja de simbología
                     if($(this).is(':checked')){
-                        map.addLayer(wmsLayerGOES)
-                        $('#imagen').append('<img src="'+imggeocolor+'" class="imgeocolor"/>');
+                        map.addLayer(wmsLayerSentinel)
+                        $('#imagen').append('<img src="'+imgsentineltc+'" class="imgsentineltruec"/>');
                     } else {
-                        map.removeLayer(wmsLayerGOES)
-                        $('img').remove('.imgeocolor');
+                        map.removeLayer(wmsLayerSentinel)
+                        $('img').remove('.imgsentineltruec');
                     }
                 });
 

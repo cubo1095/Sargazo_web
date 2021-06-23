@@ -3,7 +3,7 @@ $(document).ready(heightsimbo);
 function heightsimbo(){
 
     switch(true){
-        case $('#fire').is(':checked') && $('#goes').is(':checked'):
+        case $('#fire').is(':checked') && $('#sentineltc').is(':checked'):
             $('.Simbologia').css('height','50%');
             break;
 
@@ -11,7 +11,7 @@ function heightsimbo(){
             $('.Simbologia').css('height','50%');
             break;
 
-        case $('#goes').is(':checked'):
+        case $('#sentineltc').is(':checked'):
             $('.Simbologia').css('height','50%');
             break;
 
