@@ -1,4 +1,4 @@
-$(document).ready(sargazo);
+$(window).on("load",sargazo);
 
 function sargazo(){
     var con= 1;
