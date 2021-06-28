@@ -7,7 +7,7 @@ function sargazo(){
     '<input type="checkbox" id="sargazo_26" checked />'+
     '<label for="check1">Sargazo 26/05/2021</label><br>'+
     '<input type="checkbox" id="sargazo_05"  checked/>'+
-    '<label for="check1">Sargazo 05/05/2021</label><br></br>'
+    '<label for="check1">Sargazo 05/06/2021</label><br></br>'
     
     
     $('#sargazo').click(function(){
@@ -43,7 +43,10 @@ function sargazo(){
       
     
     $('#sargazolight').click(function(){
-        var imgsar =  "static/img/Simbo/sargazo.png";
+        var imgsar0506 =  "static/img/Simbo/sargazo0506.png";
+        var imgsar2605 =  "static/img/Simbo/sargazo2605.png";
+        var imgsar3105 =  "static/img/Simbo/sargazo3105.png";
+
         if($(this).is(':checked')){
             $("#sargazo_31").prop("checked", true);
             $("#sargazo_26").prop("checked", true);
@@ -51,7 +54,9 @@ function sargazo(){
             map.addLayer(wmsLayersargazo_31);
             map.addLayer(wmsLayersargazo_26);
             map.addLayer(wmsLayersargazo_05);
-            $('#imagen').append('<img src="'+imgsar+'" class="imgsarg"/>');
+            $('#imagen').append('<img src="'+imgsar0506+'" class="imgsarg0506"/>');
+            $('#imagen').append('<img src="'+imgsar2605+'" class="imgsarg2605"/>');
+            $('#imagen').append('<img src="'+imgsar3105+'" class="imgsarg3105"/>');
         } else {
             $("#sargazo_31").prop("checked", false);
             $("#sargazo_26").prop("checked", false);
@@ -59,7 +64,9 @@ function sargazo(){
             map.removeLayer(wmsLayersargazo_31);
             map.removeLayer(wmsLayersargazo_26);
             map.removeLayer(wmsLayersargazo_05);
-            $('img').remove('.imgsarg');
+            $('img').remove('.imgsarg0506');
+            $('img').remove('.imgsarg2605');
+            $('img').remove('.imgsarg3105');
         }
     });
 
