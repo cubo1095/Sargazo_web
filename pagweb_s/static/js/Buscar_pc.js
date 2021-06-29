@@ -1,6 +1,6 @@
-$(document).ready(main);
+$(document).ready(searchsargazo);
 
-    function main(){
+    function searchsargazo(){
         //Función para buscar fecha y mostrar en mapa
         $('.botton-Buscar').click(function(){
                                 
@@ -28,14 +28,15 @@ $(document).ready(main);
                 swal('Tu consulta comprende de: '+fecha_1+' a '+fecha_2);
                 
                                
-                viewparameters = 'f:'+fecha_1+' ;f1:'+fecha_2 ;
-                puntosconlayer.getSource().updateParams({'LAYERS': 'fires:puntos_d', 'viewparams': viewparameters }); 
+                cql_filter = "fecha between '"+fecha_1+"' and '"+fecha_2+"'";
                 
+                wmsLayersargazo.getSource().updateParams({'LAYERS': 'sargazo:sargazo', 'CQL_FILTER': cql_filter}); 
+                //////////////////////////////////////////////
                 if($('#pconsulta').html()==''){
                     $('#pconsulta').html('<input type="checkbox" id="pconsul" value="1" checked=""/>'+
                     '<label for="check1"> Puntos Consulta</label><br>');
                     imgcon = "static/img/Simbo/PuntosConsulta.png";
-                    // swal($('#pconsulta').html());
+                    
                     $('#imagen').append('<img src="'+imgcon+'" class="imgcon"/>');
                 }
                 
@@ -54,28 +55,7 @@ $(document).ready(main);
                 });
                 
                 document.getElementById("body-grapper").style.display = "none";
-                
-                // var features = vectorSource.readFeatures();
-                // vectorSource.clear(true);
-                // vectorSource.addFeatures(features);
-
-                
-                
-                
-
-
-                
-                /*wmsSourcepuntos.refresh();             
-                map.addLayer(puntosconlayer);*/
-            
-
-            // $('.botton-Buscar').click(function(){
-            //         var imgcon = "static/img/Simbo/PuntosConsulta.png";
-            //         $('#imagen').append('<img src="'+imgcon+'" class="imgcon"/>');
-            //         $('#pconsulta').append('<input type="checkbox" id="pconsul" value="1" checked=""/>'+
-            //             '<label for="check1">Puntos Consulta</label><br>');
-            // });
-
+  
             //Función de descarga botton-Json    
             $('.botton-Json').click(function(){
             if (fecha_1 == '' && fecha_2 == ''){
@@ -120,7 +100,50 @@ $(document).ready(main);
             
             
         });
+        //Función busqueda por área
+        $('#ejecutar').click(function(){
+            signo = $('#mayormenor').val();
+            area = $('#area').val();
+            cql_filter = "fecha between '"+fecha_1+"' and '"+fecha_2+"' and area"+signo+""+area;
+            swal('Su consulta corresponde a las fechas: '+fecha_1+' y '+fecha_2+'. Área'+signo+''+area+' metros cuadrados.');       
+            wmsLayersargazo.getSource().updateParams({'LAYERS': 'sargazo:sargazo', 'CQL_FILTER': cql_filter});
+        })
+            
+        //Función de rectángulo 
+        $('#fig2').click(function(){
+            //Poligono
+            boxControl =new ol.interaction.DragBox ({ 
+                condition: ol.events.condition.always, 
+                style: new ol.style.Style ({ 
+                    stroke: new ol.style.Stroke({color: [0, 255, 0, 1]}) 
+                }) 
+            }); 
+            map.addInteraction(boxControl);
+            
+            boxControl.on('boxend', function () { 
+                var a= boxControl.getGeometry().getCoordinates(); 
+                p1 = a[0][0];
+                p2 = a[0][1];
+                p3 = a[0][2];
+                p4 = a[0][3];
 
+                alert(typeof(p1));
+                var poligono = new ol.Feature({
+                        geometry: new ol.geom.Polygon([a])
+                    });
+
+                poligono.getGeometry().transform('EPSG:4326', 'EPSG:3857');
+                var polySource= new ol.source.Vector({
+                        features: [poligono]
+                    });
+
+                var polyLayer = new ol.layer.Vector({
+                        source: polySource
+                });
+                map.addLayer(polyLayer);
+            });
+        })
+        
 
         
     }

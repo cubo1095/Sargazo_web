@@ -63,13 +63,28 @@
                             <h1> Ingrese las fechas correspondientes para realizar su consulta </h1>    			
                             <div class="busqueda" id="busqueda">      
                             <label id="label" for=""> Inicio:</label>
-                            <br><input type="date" name="date3"  id="date3" min= "2019-05-01" required>
+                            <br><input type="date" name="date3"  id="date3" min= "2021-05-21" required>
 
-                            <br><label id="label" for=""> Termino:</label>
+                            <br><label id="label" for=""> Término:</label>
                             <br><input type="date" name="date4" id="date4" required>
 
                             <br><br>
                             <div align="center"><input type="submit" value="Buscar" class="botton-Buscar" id="Buscar"/></div>    
+                            </div>
+                            <h1> Consulta por Área de Sargazo</h1>
+                            <div id="busqueda" class="busqueda">
+                                <label for="" id="label"> Área(metros cuadrados):</label>
+                                <select id="mayormenor">
+                                    <option value=">">Mayor que...</option>
+                                    <option value=">=">Mayor igual que...</option>
+                                    <option value="<">Menor que...</option>
+                                    <option value="<=">Menor igual que...</option>
+                                    <option value="==">Igual que...</option>
+                                </select>
+                                <br><input type="text" name="area" id="area">
+                                <br><br>
+                                <div align="center"><input type="submit" value="Ejecutar" class="botton-ejecutar" id="ejecutar"/></div>
+                                <br>
                             </div>
                     </div>
                     <div class="Descarga"> 
@@ -141,6 +156,9 @@
             <img src="static/img/32px/Informacion.png">                                
         </label> 
     </abbr>
+    <abbr title="Información por rectangulo">    
+        <div id="fig2"><img src="static/img/64px/rectangle.png"></div>
+    </abbr>
    
     <div id="infopuntos"></div>
     
@@ -158,13 +176,13 @@
             <img src="static/img/Simbo/sargazo2605.png" class="imgsarg2605"/>
             <img src="static/img/Simbo/sargazo3105.png" class="imgsarg3105"/>
             <img src="static/img/Simbo/estados.png" class="imgest"/>
-            
+                        
         </div>
     </div>
     </section>
     <script>
         //variables fechas
-        var fecha_1 = '0000-00-00';
+                var fecha_1 = '0000-00-00';
                 var fecha_2 = '0000-00-00';
                 
                 //Agregamos variables de los horarios de las ultimas imagenes
@@ -234,52 +252,22 @@
                     }
                 });
 
-                //Layer Sargazo 26
-                var wmsSourcesargazo_26 = new ol.source.TileWMS({
+                //Layer Sargazo
+                var wmsSourcesargazo = new ol.source.TileWMS({
                     visible: true,
                     url: 'http://132.247.103.145:8080/geoserver//wms',
-                    params: {'LAYERS':'	sargazo:s2_msi_sar__20210526t160829','TILED': true},
-                    serverType: 'geoserver',
+                    params: {'LAYERS':'	sargazo:sargazo','TILED': true},
+                    serverType: 'geoserver'
                     });
 
-                var wmsLayersargazo_26 = new  ol.layer.Tile({
-                    source: wmsSourcesargazo_26,
+                var wmsLayersargazo = new  ol.layer.Tile({
+                    source: wmsSourcesargazo,
                     zIndex: 1
                 });
-                map.addLayer(wmsLayersargazo_26);
+                map.addLayer(wmsLayersargazo);
                 
-
-                //Layer Sargazo 31
-                var wmsSourcesargazo_31 = new ol.source.TileWMS({
-                    visible: true,
-                    url: 'http://132.247.103.145:8080/geoserver//wms',
-                    params: {'LAYERS':'sargazo:s2_msi_sar_20210531t160901','TILED': true},
-                    serverType: 'geoserver',
-                    });
-
-                var wmsLayersargazo_31 = new  ol.layer.Tile({
-                    source: wmsSourcesargazo_31,
-                    zIndex: 1
-                });
-                map.addLayer(wmsLayersargazo_31);
-               
-
-                //Layer Sargazo 05
-                var wmsSourcesargazo_05 = new ol.source.TileWMS({
-                    visible: true,
-                    url: 'http://132.247.103.145:8080/geoserver//wms',
-                    params: {'LAYERS':'sargazo:s2_msi_sar__20210605t160829','TILED': true},
-                    serverType: 'geoserver',
-                    });
-
-                var wmsLayersargazo_05 = new  ol.layer.Tile({
-                    source: wmsSourcesargazo_05,
-                    zIndex: 1
-                });
-                map.addLayer(wmsLayersargazo_05);
+                              
                 
-
-
                 //Layer Áreas Naturales Protegidas
                 var wmsSourceANP = new ol.source.TileWMS({
                     visible: true,
