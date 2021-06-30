@@ -73,7 +73,7 @@
                             </div>
                             <h1> Consulta por Área de Sargazo</h1>
                             <div id="busqueda" class="busqueda">
-                                <label for="" id="label"> Área(metros cuadrados):</label>
+                                <label for="" id="label"> Área en metros cuadrados</label>
                                 <select id="mayormenor">
                                     <option value=">">Mayor que...</option>
                                     <option value=">=">Mayor igual que...</option>
@@ -99,8 +99,9 @@
                         <div class="Vectoriales">
                             <h1>Vectoriales</h1>
                             <input type="checkbox" id="sargazolight" checked/>
-                            <label id="sargazo">Sargazo</label><br>
-                            <div id="sargazofecha"></div>
+                            <label >Sargazo</label><br>
+                            <input type="checkbox" id="sargazo_d" checked/>
+                            <label >Sargazo distancia</label><br>
                             <input type="checkbox" id="estados" checked/>
                             <label for="check1">Estados</label><br>
                             <input type="checkbox" id="anp" />
@@ -111,6 +112,8 @@
                             <label for="check1">Manglares</label><br>
                             <input type="checkbox" id="insu" />
                             <label for="check1">Territoro insular</label><br>
+                            <input type="checkbox" id="estudio" checked/>
+                            <label for="check1">Zona de estudio</label><br>
                         </div>
                         <div class="Raster">
                             <h1>Imágenes</h1>
@@ -172,9 +175,7 @@
     <div class="Simbologia">
         <h5>Simbología</h5>
         <div id="imagen" align="center">
-            <img src="static/img/Simbo/sargazo0506.png" class="imgsarg0506"/>
-            <img src="static/img/Simbo/sargazo2605.png" class="imgsarg2605"/>
-            <img src="static/img/Simbo/sargazo3105.png" class="imgsarg3105"/>
+            <img src="static/img/Simbo/sargazo.png" class="imgsar"/>
             <img src="static/img/Simbo/estados.png" class="imgest"/>
                         
         </div>
@@ -265,8 +266,34 @@
                     zIndex: 1
                 });
                 map.addLayer(wmsLayersargazo);
+
+                //Layer Sargazo distancia
+                var wmsSourcesargazod = new ol.source.TileWMS({
+                    visible: true,
+                    url: 'http://132.247.103.145:8080/geoserver//wms',
+                    params: {'LAYERS':'	sargazo:sargazo_distancia','TILED': true},
+                    serverType: 'geoserver'
+                    });
+
+                var wmsLayersargazod = new  ol.layer.Tile({
+                    source: wmsSourcesargazod,
+                    zIndex: 1
+                });
+                map.addLayer(wmsLayersargazod);
                 
-                              
+                //Layer Zona de estudio
+                var wmsSourcezona = new ol.source.TileWMS({
+                    visible: true,
+                    url: 'http://132.247.103.145:8080/geoserver//wms',
+                    params: {'LAYERS':'	sargazo:region_sargazo1','TILED': true},
+                    serverType: 'geoserver'
+                    });
+
+                var wmsLayerzona = new  ol.layer.Tile({
+                    source: wmsSourcezona,
+                    zIndex: 1
+                });
+                map.addLayer(wmsLayerzona);            
                 
                 //Layer Áreas Naturales Protegidas
                 var wmsSourceANP = new ol.source.TileWMS({
@@ -333,13 +360,13 @@
                 });
 
                 $('#man').click(function(){
-                    var imganp = "static/img/Simbo/ANP.png";//jfkaljsdkfad
+                    var imgman = "static/img/Simbo/manglares.png";//jfkaljsdkfad
                     if($(this).is(':checked')){
                         map.addLayer(wmsLayerman);
-                        $('#imagen').append('<img src="'+imganp+'" class="imganp"/>');
+                        $('#imagen').append('<img src="'+imgman+'" class="imgmang"/>');
                     } else {
                         map.removeLayer(wmsLayerman);
-                        $('img').remove('.imganp');
+                        $('img').remove('.imgmang');
                     }
                 });
 
@@ -387,7 +414,7 @@
 
                 var iconStyle = new ol.style.Style({
                     image: new ol.style.Icon(({
-                        anchor: [10, 20],
+                        anchor: [20, 20],
                         anchorXUnits: 'pixels',
                         anchorYUnits: 'pixels',
                         opacity: 0.7,

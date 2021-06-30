@@ -144,23 +144,21 @@ header a#Sar{
 }
 /* display de consulta */
 
-div.con{
-    display: inline-block;
+header div.con{
+    display: block;
     width: 250px;
     left: -100%;
     padding: 0;
     top: 9em;
     color: white;
     background-color: rgb(37, 36, 36);
-    position: fixed;
+    position: absolute;
     border-color: white;
     border: 2px solid;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-Index: 4;
     height: 500px;
+    overflow: auto;
 }
 
 header div.con h1{
@@ -173,7 +171,6 @@ header div.con h1{
     border-bottom-width: 2px;
     border-bottom-style: solid;
     font-size: 15px;
-    border-top-right-radius: 25px;
 }
 
 header div.con .busqueda{
@@ -221,14 +218,14 @@ header div.con label#label{
     
 }
 
-div.con::-webkit-scrollbar {
-    width: 7px;
+header div.con::-webkit-scrollbar {
+    width: 5px;
     
 }
 
-div.con::-webkit-scrollbar-thumb {
+header div.con::-webkit-scrollbar-thumb {
     background: #189907;
-    border-radius: 7px;
+    border-radius: 5px;
 }
 
 header div.con div.Descarga h1.descarga{
