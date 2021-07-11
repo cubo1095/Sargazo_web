@@ -1,14 +1,7 @@
-$(window).on("load",sargazo);
+$(document).ready(sargazo);
 
 function sargazo(){
-    var con= 1;
-    /*sarfe='<input type="checkbox" id="sargazo_31" checked />'+
-    '<label for="check1">Sargazo 31/05/2021</label><br>'+
-    '<input type="checkbox" id="sargazo_26" checked />'+
-    '<label for="check1">Sargazo 26/05/2021</label><br>'+
-    '<input type="checkbox" id="sargazo_05"  checked/>'+
-    '<label for="check1">Sargazo 05/06/2021</label><br></br>'*/
-    
+        
     
     $('#sargazolight').click(function(){
         var imgsargazo = "static/img/Simbo/sargazo.png";

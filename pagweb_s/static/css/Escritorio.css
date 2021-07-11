@@ -652,7 +652,19 @@ div.Simbologia::-webkit-scrollbar-thumb {
      font-family: Verdana;
      font-size: 15px;
  }
-
+ /*******************************Mouse-Position******************************/
+ #mouse-position{
+    background: rgb(37, 36, 36, 0.7);
+    color: #ffff;
+    z-index: 3;
+    position: absolute;
+    bottom: 1%;
+    right: 5%;
+    width: 170px;
+    border: 2px solid #189907;
+    padding-left: 10px;
+    padding-right: 10px;
+ }
 /************************************iframe***********************************/
 
 

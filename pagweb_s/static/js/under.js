@@ -12,6 +12,7 @@ function under(){
             $('#fig1').animate({right: '265px'});
             $('#fig2').animate({right: '265px'});
             $('.ol-zoom').animate({right: '265px'});
+            $('#mouse-position').animate({right: '265px'})
             contador = 0;
         } else {
             contador = 1;
@@ -21,6 +22,7 @@ function under(){
             $('#fig1').animate({right: '3%'});
             $('#fig2').animate({right: '3%'});
             $('.ol-zoom').animate({right: '3%'});
+            $('#mouse-position').animate({right: '5%'})
         }
 
     });

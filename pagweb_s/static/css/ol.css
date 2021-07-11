@@ -1,5 +1,5 @@
 .ol-box{box-sizing:border-box;border-radius:2px;border:2px solid #00f}
-.ol-mouse-position{top:8px;right:8px;position:absolute}
+.ol-mouse-position{top:8px;right:8px;position:absolute;color: #ffff;z-index: 1;}
 .ol-scale-line{background:rgba(0,60,136,.3);border-radius:4px;bottom:8px;left:8px;padding:2px;position:absolute}
 .ol-scale-line-inner{border:1px solid #eee;border-top:none;color:#eee;font-size:10px;text-align:center;margin:1px;will-change:contents,width;transition:all .25s}
 .ol-scale-bar{position:absolute;bottom:8px;left:8px}.ol-scale-step-marker{width:1px;height:15px;background-color:#000;float:right;z-Index:10}
