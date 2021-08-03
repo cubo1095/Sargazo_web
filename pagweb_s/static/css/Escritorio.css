@@ -68,8 +68,8 @@ header nav ul li a{
 
 header div.conten {
     width: 25em;
-    right: 0;
-    height: 100%;
+    left: 0;
+    height: 90%;
     overflow: auto;
     padding: 0;
     color: white;
@@ -83,20 +83,14 @@ header div.conten {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-div.conten::-webkit-scrollbar {
-    width: 7px;
-}
 
-div.conten::-webkit-scrollbar-thumb {
-    background: #189907;
-    border-radius: 5px;
-}
 div.tab button{
     padding: 14px 16px;
     color: #ffff;
     background-color: rgb(37, 36, 36, 0.7);
     border: none;
     outline: none; 
+    
 }
 div.tab button.active {
     background-color: #189907;
@@ -197,7 +191,6 @@ div.con{
     border-color: white;
     border: 2px solid;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-Index: 4;
     height: 500px;
     overflow: auto;
 }
@@ -214,13 +207,13 @@ div#con h1{
     font-size: 15px;
 }
 
-header div.con .busqueda{
+div#con .busqueda{
     padding: 5px 0px 0px 10px;
     margin-right: 10px;
     
 }
 
-header div.con .botton-Buscar, .botton-ejecutar, #mayormenor{
+div#con .botton-Buscar, .botton-ejecutar, #mayormenor{
     text-decoration:none;
     font-weight: 600;
     font-size: 15px;
@@ -240,7 +233,7 @@ header div.con .botton-Buscar, .botton-ejecutar, #mayormenor{
     
 }
 
-header div.con input{
+div#con input{
     background-color: #024959;
     color:#ffffff;
     border-color: #fff;
@@ -250,7 +243,7 @@ header div.con input{
     width: 100%;
 }
 
-header div.con label#label{
+div#con label#label{
     color: #ffffff;
     font-size: 15px;
     font-family: Verdana;
@@ -259,29 +252,29 @@ header div.con label#label{
     
 }
 
-header div.con::-webkit-scrollbar {
+div#con::-webkit-scrollbar {
     width: 5px;
     
 }
 
-header div.con::-webkit-scrollbar-thumb {
+div#con::-webkit-scrollbar-thumb {
     background: #189907;
     border-radius: 5px;
 }
 
-header div.con div.Descarga h1.descarga{
+div#con div.Descarga h1.descarga{
     text-align: center;
     font-family: Verdana;
     font-size: 15px;
         
 }
 
-header div.con div.Descarga h1.descarga img{
+div#con div.Descarga h1.descarga img{
     margin-right: 10px;
     object-position: center center;
     
 }
-header div.con div.Descarga .Formatos{
+div#con div.Descarga .Formatos{
     
     padding-top: 5px;
     padding-bottom: 0px;
@@ -289,7 +282,7 @@ header div.con div.Descarga .Formatos{
     
 }
 
-header div.con div.Descarga .Formatos div, input.botton-Json, input.botton-CSV, input.botton-Shape{
+ input.botton-Json, input.botton-CSV, input.botton-Shape{
     text-decoration:none;
     font-weight: 600;
     font-size: 15px;
@@ -330,7 +323,7 @@ div#Descarga h1{
 
 /*Info*/
 
-header div.Info {
+/* header div.Info {
     display: inline-block;
     width: 50%;
     left: -100%;
@@ -389,14 +382,11 @@ header div.atributos img{
         object-fit: cover;
         object-position: center center;
     }
-}
+} */
 
 /*****************Capas****************/
 
-#sargazofecha{
-    margin-left: 20px;
-   
-}
+
 
 #fig{
     position: absolute;
@@ -420,14 +410,23 @@ header div.atributos img{
 div#Capas {
     width: 25em; 
     padding: 0;
+    margin: 5px 10px;
     height: 90%;
     overflow: auto;
     color: white;
     text-shadow: 0.5px 0.5px #189907;
     background-color: rgb(37, 36, 36, 0.7);
-    position: fixed;
+    position: absolute;
+}
+div#Capas::-webkit-scrollbar {
+    width: 7px;
+    
 }
 
+div#Capas::-webkit-scrollbar-thumb {
+    background: #189907;
+    border-radius: 7px;
+}
 #fecha{
     position: absolute;
     left: 0.5em;
@@ -462,8 +461,7 @@ div#Capas h1{
     padding: 10px;
     width: 25em;
     font-family: Verdana;
-    background: linear-gradient(180deg, #189907 80%, white);
-    font-weight: bold;
+    background: linear-gradient(180deg, #189907 90%, white);
     font-size: 15px;
     color: #ffff;
 }
@@ -484,7 +482,7 @@ div#Capas p{
 
 
 #mapbase img {
-    margin: 5px;
+    margin: 20px;
     border: 2px solid white;
     border-radius: 10px;
 }
@@ -502,6 +500,7 @@ header div.atributos img{
         object-position: center center;
     }
 }
+
 /*Info Imagen*/
 
 header div.InfoImage {
@@ -553,34 +552,6 @@ header div.InfoImage::-webkit-scrollbar-thumb {
     border-radius: 5px;
 }
 
-/* Contacto */
-header div.Contacto {
-    display: inline-block;
-    width: 50%;
-    left: -100%;
-    padding: 0;
-    color: #fff;
-    background-color: rgba(3,126,140,0.7);
-    position: fixed;
-    z-index: 1;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    border-color: #fff;
-    border-width: 2px;
-    border-style: solid;
-    
-}
-
-
-
-header div.Contacto p{
-    text-align: justify;
-    padding: 10px 4% 10px 4%;
-    width: 100%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
-    font-size: 15px;
-    
-}
 
 /*Info puntos*/
 #fig1{
@@ -626,42 +597,34 @@ header div.Contacto p{
 }
 /********************Simbología**********************/
 
-.Simbologia{
-    border: 2px solid white;
-    border-radius: 10px;
-    background-color: rgb(37, 36, 36, 0.7);
-    z-index: 1;
-    bottom: 3em;
+#Simbologia{
     position: absolute;
-    left: 0.7em;
     display: block;
-    width: 255px;
-    height: 20%;
     overflow: auto;
     
 }
 
-div.Simbologia::-webkit-scrollbar {
+div#Simbologia::-webkit-scrollbar {
     width: 7px;
     
 }
 
-div.Simbologia::-webkit-scrollbar-thumb {
+div#Simbologia::-webkit-scrollbar-thumb {
     background: #189907;
     border-radius: 7px;
 }
 
 
- h5{
-     background: linear-gradient(180deg, #189907 80%, white) ;
-     color: white;
-     border-top-left-radius: 8px;
-     border-top-right-radius: 8px;
-     text-align: center;
-     padding: 5px 20px 10px 20px;
-     font-family: Verdana;
-     font-size: 15px;
+ div#Simbologia h1{
+    background: linear-gradient(180deg, #189907 90%, white) ;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 25em;
+    font-family: Verdana;
+    font-size: 15px;
  }
+
  /*******************************Mouse-Position******************************/
  #mouse-position{
     background: rgb(37, 36, 36, 0.7);
