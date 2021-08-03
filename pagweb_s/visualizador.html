@@ -52,41 +52,49 @@
                 
             </nav>
             
+            <div class="tab">
+                <button class="tablinks" onclick="open(event, 'capas')" id="defaultOpen">Capas</button>
+                <button class="tablinks" onclick="open(event, 'consulta')">Consulta</button>
+                <button class="tablinks" onclick="open(event, 'descarga')">Descarga</button>
+                <button class="tablinks" onclick="open(event, 'simbo')">Simgología</button>
+            </div>
         <!--div id="principal contenedor limpiar"-->
             
-			<div id="menu">
+			<div id="conpestañas">
 				 
 				<!--form action ="" method="post"-->
-                    <div class="con">
+                    <div id="con" class="tabcontent">
                         
-                            <h1> Ingrese las fechas correspondientes para realizar su consulta </h1>    			
-                            <div class="busqueda" id="busqueda">      
-                            <label id="label" for=""> Inicio:</label>
-                            <br><input type="date" name="date3"  id="date3" min= "2021-05-21" required>
+                        <h1> Ingrese las fechas correspondientes para realizar su consulta </h1>    			
+                        <div class="busqueda" id="busqueda">      
+                        <label id="label" for=""> Inicio:</label>
+                        <br><input type="date" name="date3"  id="date3" min= "2021-05-21" required>
 
-                            <br><label id="label" for=""> Término:</label>
-                            <br><input type="date" name="date4" id="date4" required>
+                        <br><label id="label" for=""> Término:</label>
+                        <br><input type="date" name="date4" id="date4" required>
 
+                        <br><br>
+                        <div align="center"><input type="submit" value="Buscar" class="botton-Buscar" id="Buscar"/></div>    
+                        </div>
+
+                        <h1> Consulta por Área de Sargazo</h1>
+                        <div id="busqueda" class="busqueda">
+                            <label for="" id="label"> Área en metros cuadrados</label>
+                            <select id="mayormenor">
+                                <option value=">">Mayor que...</option>
+                                <option value=">=">Mayor igual que...</option>
+                                <option value="<">Menor que...</option>
+                                <option value="<=">Menor igual que...</option>
+                                <option value="==">Igual que...</option>
+                            </select>
+                            <br><input type="text" name="area" id="area">
                             <br><br>
-                            <div align="center"><input type="submit" value="Buscar" class="botton-Buscar" id="Buscar"/></div>    
-                            </div>
-                            <h1> Consulta por Área de Sargazo</h1>
-                            <div id="busqueda" class="busqueda">
-                                <label for="" id="label"> Área en metros cuadrados</label>
-                                <select id="mayormenor">
-                                    <option value=">">Mayor que...</option>
-                                    <option value=">=">Mayor igual que...</option>
-                                    <option value="<">Menor que...</option>
-                                    <option value="<=">Menor igual que...</option>
-                                    <option value="==">Igual que...</option>
-                                </select>
-                                <br><input type="text" name="area" id="area">
-                                <br><br>
-                                <div align="center"><input type="submit" value="Ejecutar" class="botton-ejecutar" id="ejecutar"/></div>
-                                <br>
-                            </div>
+                            <div align="center"><input type="submit" value="Ejecutar" class="botton-ejecutar" id="ejecutar"/></div>
+                            <br>
+                        </div>
                     </div>
-                    <div class="Descarga"> 
+
+                    <div id="Descarga" class="tabcontent"> 
                         <h1 href="#" class="descarga">Formatos de descarga:</h1>
                         <div class="Formatos">
                             <div align="center"><input  type="button" class="botton-Json" value="GeoJson" >
@@ -94,7 +102,8 @@
                             <input  type="button" class="botton-Shape" value="Shapefile" ></div>
                         </div>
                     </div>
-                    <div class="Capas">
+
+                    <div id="Capas" class="tabcontent>
                         <div class="Vectoriales">
                             <h1>Vectoriales</h1>
                             <input type="checkbox" id="sargazolight" checked/>
@@ -140,8 +149,15 @@
                             </div>
                         </div>
                     </div>
-             
-                                
+                    <div id="Simbologia" class="tabcontent">
+                        <h5>Simbología</h5>
+                        <div id="imagen" align="center">
+                            <img src="static/img/Simbo/sargazo.png" class="imgsar"/>
+                            <img src="static/img/Simbo/estados.png" class="imgest"/>
+                            <img src="static/img/Simbo/Sargazo_dis.png" class="imgsard">
+                                        
+                        </div>
+                    </div>                                
 			</div>
         </header>
     <div id="body-grapper"></div> 
@@ -172,15 +188,7 @@
     <abbr title="Descarga los poligonos de sargazo">
         <div id="download"><img src="static/img/32px/download.png"></div>
     </abbr>
-    <div class="Simbologia">
-        <h5>Simbología</h5>
-        <div id="imagen" align="center">
-            <img src="static/img/Simbo/sargazo.png" class="imgsar"/>
-            <img src="static/img/Simbo/estados.png" class="imgest"/>
-            <img src="static/img/Simbo/Sargazo_dis.png" class="imgsard">
-                        
-        </div>
-    </div>
+    
 
     <script>
         //variables fechas
