@@ -66,6 +66,47 @@ header nav ul li a{
     
 }
 
+header div.conten {
+    width: 25em;
+    right: 0;
+    height: 100%;
+    overflow: auto;
+    padding: 0;
+    color: white;
+    text-shadow: 0.5px 0.5px #189907;
+    background-color: rgb(37, 36, 36, 0.7);
+    position: fixed;
+    z-index: 3;
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+div.conten::-webkit-scrollbar {
+    width: 7px;
+}
+
+div.conten::-webkit-scrollbar-thumb {
+    background: #189907;
+    border-radius: 5px;
+}
+div.tab button{
+    padding: 14px 16px;
+    color: #ffff;
+    background-color: rgb(37, 36, 36, 0.7);
+    border: none;
+    outline: none; 
+}
+div.tab button.active {
+    background-color: #189907;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    width: 100%;
+  }
 
 img.menu{
     float: left;
@@ -144,9 +185,9 @@ header a#Sar{
 }
 /* display de consulta */
 
-header div.con{
+div.con{
     display: block;
-    width: 250px;
+    width: 25em;
     left: -100%;
     padding: 0;
     top: 9em;
@@ -161,10 +202,10 @@ header div.con{
     overflow: auto;
 }
 
-header div.con h1{
+div#con h1{
     text-align: center;
     padding: 10px;
-    width: 100%;
+    width: 25em;
     font-family: Verdana;
     background: linear-gradient(180deg, #189907 90%, white);
     border-bottom-color: white;
@@ -269,36 +310,22 @@ header div.con div.Descarga .Formatos div, input.botton-Json, input.botton-CSV, 
 
 /****************** display de Descarga *********************/
 
-header div.Descarga{
+div#Descarga{
     display: inline-block;
-    width: 250px;
-    left: -100%;
+    width: 25em;
     padding: 0;
     top: 15em;
     color: white;
-    background-color: rgb(37, 36, 36);
-    position: fixed;
-    z-index: 1;
-    border-color: white;
-    border: 2px solid;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-Index: 4;
+    
 }
 
-header div.Descarga h1{
+div#Descarga h1{
     text-align: center;
     padding: 10px;
-    width: 100%;
+    width: 25em;
     font-family: Verdana;
     background: linear-gradient(180deg, #189907 90%, white);
-    border-bottom-color: white;
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
     font-size: 15px;
-    border-top-right-radius: 25px;
 }
 
 /*Info*/
@@ -390,22 +417,15 @@ header div.atributos img{
     border-radius: 5px;
 }
 
-header div.Capas {
-    
-    width: 250px;
-    right: -100%;
+div#Capas {
+    width: 25em; 
+    padding: 0;
     height: 90%;
     overflow: auto;
-    padding: 0;
     color: white;
     text-shadow: 0.5px 0.5px #189907;
     background-color: rgb(37, 36, 36, 0.7);
     position: fixed;
-    z-index: 3;
-    border-color: #fff;
-    border-width: 2px;
-    border-style: solid;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 #fecha{
@@ -436,30 +456,21 @@ header div.Capas {
 
 }
 
-header div.Capas::-webkit-scrollbar {
-    width: 7px;
-    
-}
 
-header div.Capas::-webkit-scrollbar-thumb {
-    background: #024959;
-    border-radius: 5px;
-}
-header div.Capas h1{
+div#Capas h1{
     text-align: center;
     padding: 10px;
-    width: 100%;
+    width: 25em;
     font-family: Verdana;
     background: linear-gradient(180deg, #189907 80%, white);
     font-weight: bold;
     font-size: 15px;
-    
+    color: #ffff;
 }
 
-header div.Capas p{
+div#Capas p{
     text-align: justify;
     padding: 10px 4% 10px 4%;
-    width: 100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
     
@@ -467,9 +478,8 @@ header div.Capas p{
 /*Mapa Base*/
 .BaseMap {
     display: block;
-    bottom: 0;
-    position: fixed;
-    width: 246px;
+    position: absolute;
+    width: 25em;
 }
 
 

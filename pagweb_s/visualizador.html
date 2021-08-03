@@ -51,114 +51,115 @@
                 </ul>
                 
             </nav>
-            
-            <div class="tab">
-                <button class="tablinks" onclick="open(event, 'capas')" id="defaultOpen">Capas</button>
-                <button class="tablinks" onclick="open(event, 'consulta')">Consulta</button>
-                <button class="tablinks" onclick="open(event, 'descarga')">Descarga</button>
-                <button class="tablinks" onclick="open(event, 'simbo')">Simgología</button>
-            </div>
-        <!--div id="principal contenedor limpiar"-->
-            
-			<div id="conpestañas">
+            <div class="conten">
+                <div class="tab">
+                    <button class="tablinks" onclick="openc(event, 'Capas')" id="defaultOpen">Capas</button>
+                    <button class="tablinks" onclick="openc(event, 'con')" >Consulta</button>
+                    <button class="tablinks" onclick="openc(event, 'Descarga')" >Descarga</button>
+                    <button class="tablinks" onclick="openc(event, 'Simbologia')">Simgología</button>
+                </div>
+                <!-- <div id="conpestañas"> -->
 				 
-				<!--form action ="" method="post"-->
-                    <div id="con" class="tabcontent">
-                        
-                        <h1> Ingrese las fechas correspondientes para realizar su consulta </h1>    			
-                        <div class="busqueda" id="busqueda">      
-                        <label id="label" for=""> Inicio:</label>
-                        <br><input type="date" name="date3"  id="date3" min= "2021-05-21" required>
-
-                        <br><label id="label" for=""> Término:</label>
-                        <br><input type="date" name="date4" id="date4" required>
-
-                        <br><br>
-                        <div align="center"><input type="submit" value="Buscar" class="botton-Buscar" id="Buscar"/></div>    
-                        </div>
-
-                        <h1> Consulta por Área de Sargazo</h1>
-                        <div id="busqueda" class="busqueda">
-                            <label for="" id="label"> Área en metros cuadrados</label>
-                            <select id="mayormenor">
-                                <option value=">">Mayor que...</option>
-                                <option value=">=">Mayor igual que...</option>
-                                <option value="<">Menor que...</option>
-                                <option value="<=">Menor igual que...</option>
-                                <option value="==">Igual que...</option>
-                            </select>
-                            <br><input type="text" name="area" id="area">
+                    <!--form action ="" method="post"-->
+                        <div id="con" class="tabcontent">
+                            
+                            <h1> Ingrese las fechas correspondientes para realizar su consulta </h1>    			
+                            <div class="busqueda" id="busqueda">      
+                            <label id="label" for=""> Inicio:</label>
+                            <br><input type="date" name="date3"  id="date3" min= "2021-05-21" required>
+    
+                            <br><label id="label" for=""> Término:</label>
+                            <br><input type="date" name="date4" id="date4" required>
+    
                             <br><br>
-                            <div align="center"><input type="submit" value="Ejecutar" class="botton-ejecutar" id="ejecutar"/></div>
-                            <br>
-                        </div>
-                    </div>
-
-                    <div id="Descarga" class="tabcontent"> 
-                        <h1 href="#" class="descarga">Formatos de descarga:</h1>
-                        <div class="Formatos">
-                            <div align="center"><input  type="button" class="botton-Json" value="GeoJson" >
-                            <input type="button" class="botton-CSV" value="CSV">
-                            <input  type="button" class="botton-Shape" value="Shapefile" ></div>
-                        </div>
-                    </div>
-
-                    <div id="Capas" class="tabcontent>
-                        <div class="Vectoriales">
-                            <h1>Vectoriales</h1>
-                            <input type="checkbox" id="sargazolight" checked/>
-                            <label >Sargazo</label><br>
-                            <input type="checkbox" id="sargazo_d" checked/>
-                            <label >Sargazo distancia</label><br>
-                            <input type="checkbox" id="estados" checked/>
-                            <label for="check1">Estados</label><br>
-                            <input type="checkbox" id="anp" />
-                            <label for="check1">Áreas Naturales Protegidas</label><br>
-                            <input type="checkbox" id="hum" />
-                            <label for="check1">Humedales</label><br>
-                            <input type="checkbox" id="man" />
-                            <label for="check1">Manglares</label><br>
-                            <input type="checkbox" id="insu" />
-                            <label for="check1">Territoro insular</label><br>
-                            <input type="checkbox" id="estudio" checked/>
-                            <label for="check1">Zona de estudio</label><br>
-                        </div>
-                        <div class="Raster">
-                            <h1>Imágenes</h1>
-                            <input type="checkbox" id="sentineltc" value="1"/>
-                            <label for="check1">Sentinel TC</label><br>
-                        </div>
-                        <div class="BaseMap">
-                            <h1>Mapas Base</h1>
-                            <div align="center">
-                            <label id="mapbase">
-                                
-                                <img src="./static/img/satelite.png" width="60px" height="60px" id="satelital"><br>                                
-                                <p>Satélite</p>
-                            </label>
-                            <label id="mapbase">
-                                
-                                <img src="./static/img/OSM.png" width="60px" height="60px" id="osm"><br>                                
-                                <p text-align="center">OSM</p>
-                            </label>
-                            <label id="mapbase">
-                                <!-- <input type="checkbox" id="oscuro" value="1"  /> -->
-                                <img src="./static/img/oscuro.png" width="60px" height="60px" id="oscuro"><br>                                
-                                <p>Oscuro</p>
-                            </label>
+                            <div align="center"><input type="submit" value="Buscar" class="botton-Buscar" id="Buscar"/></div>    
+                            </div>
+    
+                            <h1> Consulta por Área de Sargazo</h1>
+                            <div id="busqueda" class="busqueda">
+                                <label for="" id="label"> Área en metros cuadrados</label>
+                                <select id="mayormenor">
+                                    <option value=">">Mayor que...</option>
+                                    <option value=">=">Mayor igual que...</option>
+                                    <option value="<">Menor que...</option>
+                                    <option value="<=">Menor igual que...</option>
+                                    <option value="==">Igual que...</option>
+                                </select>
+                                <br><input type="text" name="area" id="area">
+                                <br><br>
+                                <div align="center"><input type="submit" value="Ejecutar" class="botton-ejecutar" id="ejecutar"/></div>
+                                <br>
                             </div>
                         </div>
-                    </div>
-                    <div id="Simbologia" class="tabcontent">
-                        <h5>Simbología</h5>
-                        <div id="imagen" align="center">
-                            <img src="static/img/Simbo/sargazo.png" class="imgsar"/>
-                            <img src="static/img/Simbo/estados.png" class="imgest"/>
-                            <img src="static/img/Simbo/Sargazo_dis.png" class="imgsard">
-                                        
+    
+                        <div id="Descarga" class="tabcontent"> 
+                            <h1 href="#" class="descarga">Formatos de descarga:</h1>
+                            <div class="Formatos">
+                                <div align="center"><input  type="button" class="botton-Json" value="GeoJson" >
+                                <input type="button" class="botton-CSV" value="CSV">
+                                <input  type="button" class="botton-Shape" value="Shapefile" ></div>
+                            </div>
                         </div>
-                    </div>                                
-			</div>
+    
+                        <div id="Capas" class="tabcontent">
+                            <div class="Vectoriales">
+                                <h1>Vectoriales</h1>
+                                <input type="checkbox" id="sargazolight" checked/>
+                                <label >Sargazo</label><br>
+                                <input type="checkbox" id="sargazo_d" checked/>
+                                <label >Sargazo distancia</label><br>
+                                <input type="checkbox" id="estados" checked/>
+                                <label for="check1">Estados</label><br>
+                                <input type="checkbox" id="anp" />
+                                <label for="check1">Áreas Naturales Protegidas</label><br>
+                                <input type="checkbox" id="hum" />
+                                <label for="check1">Humedales</label><br>
+                                <input type="checkbox" id="man" />
+                                <label for="check1">Manglares</label><br>
+                                <input type="checkbox" id="insu" />
+                                <label for="check1">Territoro insular</label><br>
+                                <input type="checkbox" id="estudio" checked/>
+                                <label for="check1">Zona de estudio</label><br>
+                            </div>
+                            <div class="Raster">
+                                <h1>Imágenes</h1>
+                                <input type="checkbox" id="sentineltc" value="1"/>
+                                <label for="check1">Sentinel TC</label><br>
+                            </div>
+                            <div class="BaseMap">
+                                <h1>Mapas Base</h1>
+                                <div align="center">
+                                <label id="mapbase">
+                                    
+                                    <img src="./static/img/satelite.png" width="60px" height="60px" id="satelital"><br>                                
+                                    <p>Satélite</p>
+                                </label>
+                                <label id="mapbase">
+                                    
+                                    <img src="./static/img/OSM.png" width="60px" height="60px" id="osm"><br>                                
+                                    <p text-align="center">OSM</p>
+                                </label>
+                                <label id="mapbase">
+                                    <!-- <input type="checkbox" id="oscuro" value="1"  /> -->
+                                    <img src="./static/img/oscuro.png" width="60px" height="60px" id="oscuro"><br>                                
+                                    <p>Oscuro</p>
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Simbologia" class="tabcontent">
+                            <h5>Simbología</h5>
+                            <div id="imagen" align="center">
+                                <img src="static/img/Simbo/sargazo.png" class="imgsar"/>
+                                <img src="static/img/Simbo/estados.png" class="imgest"/>
+                                <img src="static/img/Simbo/Sargazo_dis.png" class="imgsard">
+                            </div>
+                        </div>                                
+                <!-- </div> -->
+        </div>
+        <!--div id="principal contenedor limpiar"-->
+            
+			
         </header>
     <div id="body-grapper"></div> 
     <div id="mouse-position"></div>   
@@ -191,6 +192,7 @@
     
 
     <script>
+        
         //variables fechas
     var fecha_1 = '0000-00-00';
     var fecha_2 = '0000-00-00';
