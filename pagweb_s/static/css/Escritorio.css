@@ -83,7 +83,14 @@ header div.conten {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
+div.conten::-webkit-scrollbar {
+    width: 7px;
+}
 
+div.conten::-webkit-scrollbar-thumb {
+    background: #189907;
+    border-radius: 5px;
+}
 div.tab button{
     padding: 14px 16px;
     color: #ffff;
@@ -307,7 +314,6 @@ div#Descarga{
     display: inline-block;
     width: 25em;
     padding: 0;
-    top: 15em;
     color: white;
     
 }
@@ -408,9 +414,9 @@ header div.atributos img{
 }
 
 div#Capas {
-    width: 25em; 
-    padding: 0;
-    margin: 5px 10px;
+    /* width: 24em;  */
+    /* padding: 0; */
+    padding: 5px 10px;
     height: 90%;
     overflow: auto;
     color: white;
@@ -477,12 +483,12 @@ div#Capas p{
 .BaseMap {
     display: block;
     position: absolute;
-    width: 25em;
+    width: 24em;
 }
 
 
 #mapbase img {
-    margin: 20px;
+    margin: 15px;
     border: 2px solid white;
     border-radius: 10px;
 }
