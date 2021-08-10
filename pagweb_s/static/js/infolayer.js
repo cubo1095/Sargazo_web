@@ -81,20 +81,53 @@ function main(){
             return $(this).attr('id');
         }).get();
         idS=$('input[type=checkbox]:checked').size();
-        alert(idS);
+        // alert(idS);
         alert('IDS: ' + ids.join(', '));
+        $('#selectcapas').html("");
         for(var i=0; i<idS; i++ ){
-            alert(ids[i]);
             switch (true){
                 case ids[i]=='sargazod':
-                $('#selectcapas').html('<option value="sargazod">Sargazo</option>')
-                alert("Se agregará sargazo")
+                $('#selectcapas').append('<option value="sargazod">Sargazo</option>')
+                break;
                 case ids[i]=='estados':
-                $('#selectcapas').html('<option value="estados">Estados y linea</option>')
+                $('#selectcapas').append('<option value="estados">Estados y linea</option>')
+                break;
+                case ids[i]=='anp':
+                $('#selectcapas').append('<option value="anp">Área natural protegida</option>')
+                break;
+                case ids[i]=='hum':
+                $('#selectcapas').append('<option value="hum">Humedales</option>')
+                break;
+                case ids[i]=='nidos':
+                $('#selectcapas').append('<option value="nidos">Nidos de tortugas</option>')
+                break;
+                case ids[i]=='man':
+                $('#selectcapas').append('<option value="man">Manglares</option>')
+                break;
+                case ids[i]=='insu':
+                $('#selectcapas').append('<option value="insu">Territorio insular</option>')
+                break;
+                case ids[i]=='estudio':
+                $('#selectcapas').append('<option value="estudio">Zona de estudio</option>')
+                break;
+                default:
+                $('#selectcapas').append('<option value="sentineltc">Sentinel TC</option>')
+                break;
             }
         }
-       
+            
+            
         
+       
+        // // alert(ids[i]);
+        // cap = ["sargazod", "estados", "anp", "hum", "nidos", "man", "insu", "estudio", "sentineltc"]
+        // // alert(cap.length);
+        // for(var j=0; j<cap.length; j++){
+        //     // alert(cap[j]);
+        //     if(ids[i]==cap[j]){
+        //         // alert('Son iguales: '+ids[i]+'y '+cap[j]);
+        //         $('#selectcapas').append('<option value="ids[i]">dis[i]</option>')
+        //     }
             
     });
     
