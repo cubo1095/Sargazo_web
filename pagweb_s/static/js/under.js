@@ -37,6 +37,7 @@ function under(){
     
 };
 
+//función de pestañas
 function openc(evt, act) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -51,5 +52,4 @@ function openc(evt, act) {
     evt.currentTarget.className += " active";
 }
 
-// Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();

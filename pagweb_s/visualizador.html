@@ -55,7 +55,7 @@
                 <div class="tab">
                     <button class="tablinks" onclick="openc(event, 'Capas')" id="defaultOpen">Capas</button>
                     <button class="tablinks" onclick="openc(event, 'con')" >Consulta</button>
-                    <button class="tablinks" onclick="openc(event, 'Descarga')" >Descarga</button>
+                    <button class="tablinks" onclick="openc(event, 'infolayer')" >Información</button>
                     <button class="tablinks" onclick="openc(event, 'Simbologia')">Simbología</button>
                 </div>
                 <!-- <div id="conpestañas"> -->
@@ -92,28 +92,32 @@
                             </div>
                         </div>
     
-                        <div id="Descarga" class="tabcontent"> 
+                        <!-- <div id="Descarga" class="tabcontent"> 
                             <h1 href="#" class="descarga">Formatos de descarga:</h1>
                             <div class="Formatos">
                                 <div align="center"><input  type="button" class="botton-Json" value="GeoJson" >
                                 <input type="button" class="botton-CSV" value="CSV">
                                 <input  type="button" class="botton-Shape" value="Shapefile" ></div>
                             </div>
+                        </div> -->
+                        <div id="infolayer" class="tabcontent">
+                            <h1>Selecciona una capa para obtener su información</h1>
+                            <select id="selectcapas"></select>
+                            <div id="infolay"></div>
                         </div>
-    
                         <div id="Capas" class="tabcontent">
                             <div class="Vectoriales">
                                 <h1>Vectoriales</h1>
-                                <input type="checkbox" id="sargazolight" checked/>
+                                <input type="checkbox" id="sargazod" checked/>
                                 <label >Sargazo</label><br>
-                                <input type="checkbox" id="sargazo_d" checked/>
-                                <label >Sargazo distancia</label><br>
                                 <input type="checkbox" id="estados" checked/>
                                 <label for="check1">Estados</label><br>
                                 <input type="checkbox" id="anp" />
                                 <label for="check1">Áreas Naturales Protegidas</label><br>
                                 <input type="checkbox" id="hum" />
                                 <label for="check1">Humedales</label><br>
+                                <input type="checkbox" id="nidos" />
+                                <label for="check1">Nidos de tortugas</label><br>
                                 <input type="checkbox" id="man" />
                                 <label for="check1">Manglares</label><br>
                                 <input type="checkbox" id="insu" />
@@ -150,7 +154,6 @@
                         <div id="Simbologia" class="tabcontent">
                             <h1>Simbología</h1>
                             <div id="imagen">
-                                <img src="static/img/Simbo/sargazo.png" class="imgsar"/>
                                 <img src="static/img/Simbo/estados.png" class="imgest"/>
                                 <img src="static/img/Simbo/Sargazo_dis.png" class="imgsard">
                             </div>
@@ -180,7 +183,7 @@
         <div id="fig2"><img src="static/img/64px/rectangle.png"></div>
     </abbr>
    
-    <div id="infopuntos"></div>
+    
     
     
     <script>
@@ -268,21 +271,8 @@
         zIndex: 1
     });
     map.addLayer(wmsLayersargazo);
-    // sargazo();
+    
 
-    //Layer Sargazo distancia
-    var wmsSourcesargazod = new ol.source.TileWMS({
-        visible: true,
-        url: 'http://132.247.103.145:8080/geoserver//wms',
-        params: {'LAYERS':'sargazo:sargazo_distancia_r','TILED': true},
-        serverType: 'geoserver'
-        });
-
-    var wmsLayersargazod = new  ol.layer.Tile({
-        source: wmsSourcesargazod,
-        zIndex: 1
-    });
-    map.addLayer(wmsLayersargazod);
     
     //Layer Zona de estudio
     var wmsSourcezona = new ol.source.TileWMS({
@@ -298,6 +288,19 @@
     });
     map.addLayer(wmsLayerzona);            
     
+    //Layer Nidos Tortugas
+    var wmsSourcenidos = new ol.source.TileWMS({
+        visible: true,
+        url: 'http://localhost:8088/geoserver/Prueba/wms',
+        params: {'LAYERS':'	Prueba:nidostortu','TILED': true},
+        serverType: 'geoserver'
+        });
+
+    var wmsLayernidos = new  ol.layer.Tile({
+        source: wmsSourcenidos,
+        zIndex: 1
+    });
+    map.addLayer(wmsLayernidos);
     //Layer Áreas Naturales Protegidas
     var wmsSourceANP = new ol.source.TileWMS({
         visible: true,

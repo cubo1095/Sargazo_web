@@ -28,7 +28,7 @@ $(document).ready(searchsargazo);
                 swal('Tu consulta comprende de: '+fecha_1+' a '+fecha_2);
                 
                                
-                cql_filter = "fecha between '"+fecha_1+"' and '"+fecha_2+"'";
+                cql_filter = "fechadia between '"+fecha_1+"' and '"+fecha_2+"'";
                 
                 wmsLayersargazo.getSource().updateParams({'LAYERS': 'sargazo:sargazo', 'CQL_FILTER': cql_filter}); 
                 //////////////////////////////////////////////
