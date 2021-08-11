@@ -229,7 +229,7 @@ div#con .botton-Buscar, .botton-ejecutar, #mayormenor{
     padding-bottom:6px;
     padding-left:40px;
     padding-right:40px;
-    background-color: #024959;
+    background-color: rgb(26, 116, 158);
     border-color: #fff;
     border-width: 2px;
     border-style: solid;
@@ -241,9 +241,10 @@ div#con .botton-Buscar, .botton-ejecutar, #mayormenor{
 }
 
 div#con input{
-    background-color: #024959;
-    color:#ffffff;
-    border-color: #fff;
+    /* background-color: #2a7586; */
+    background-color: rgb(255, 255, 255);
+    color:black;
+    border-color: black;
     border-width: 2px;
     border-style: solid;
     margin: 0 auto;
@@ -404,9 +405,11 @@ div#infolayer h1{
     padding: 10px;
     width: 25em;
     font-family: Verdana;
-    background: linear-gradient(180deg, #189907 90%, white);
+    /* background: linear-gradient(180deg, #4cf863 90%, black); */
+    background: #37a345;
     font-size: 15px;
-    color: #ffff;
+    color:#fffff;
+    border-radius: 0.5em;
 }
 /*****************Capas****************/
 

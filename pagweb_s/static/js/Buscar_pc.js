@@ -121,18 +121,20 @@ $(document).ready(searchsargazo);
             map.addInteraction(boxControl);
             
             boxControl.on('boxend', function () { 
-                var a= boxControl.getGeometry().getCoordinates(); 
+                var a= boxControl.getGeometry().transform('EPSG:3857','EPSG:4326').getCoordinates(); 
                 p1 = a[0][0];
                 p2 = a[0][1];
                 p3 = a[0][2];
                 p4 = a[0][3];
 
-                alert(typeof(p1));
+                
                 var poligono = new ol.Feature({
                         geometry: new ol.geom.Polygon([a])
                     });
 
-                poligono.getGeometry().transform('EPSG:4326', 'EPSG:3857');
+                // poligono.getGeometry().transform('EPSG:4326','EPSG:3857' );
+                // b = poligono.getGeometry().getCoordinates();
+                alert(a);
                 var polySource= new ol.source.Vector({
                         features: [poligono]
                     });
