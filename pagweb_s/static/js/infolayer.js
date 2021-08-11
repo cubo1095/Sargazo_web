@@ -110,7 +110,7 @@ function main(){
                 case ids[i]=='estudio':
                 $('#selectcapas').append('<option value="estudio">Zona de estudio</option>')
                 break;
-                default:
+                case ids[i]=='sentineltc':
                 $('#selectcapas').append('<option value="sentineltc">Sentinel TC</option>')
                 break;
             }

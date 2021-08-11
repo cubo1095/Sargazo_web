@@ -47,7 +47,7 @@
             <nav>
                 <ul class="menu_mapcont">
                     <li><a href="#" class="info"><img src="static/img/16px/269-info.png">Tutoriales</a></li>
-                    <li><a href="#" class="infoimage"><img src="static/img/16px/015-images.png">Descarga de imágenes Sentinel</a></li>
+                    <li><a href="#" class="infoimage"><img src="static/img/16px/015-images.png">Vistas</a></li>
                 </ul>
                 
             </nav>
@@ -145,6 +145,11 @@
                                 </label>
                                 <label id="mapbase">
                                     <!-- <input type="checkbox" id="oscuro" value="1"  /> -->
+                                    <img src="./static/img/gray.png" width="60px" height="60px" id="gray"><br>                                
+                                    <p>Gris</p>
+                                </label>
+                                <label id="mapbase">
+                                    <!-- <input type="checkbox" id="oscuro" value="1"  /> -->
                                     <img src="./static/img/oscuro.png" width="60px" height="60px" id="oscuro"><br>                                
                                     <p>Oscuro</p>
                                 </label>
@@ -160,6 +165,7 @@
                         </div>                                
                 <!-- </div> -->
         </div>
+        <div class="icons"><img src="static/img/64px/pausa.png" id="barras"></div>
         <!--div id="principal contenedor limpiar"-->
             
 			
@@ -171,7 +177,7 @@
     <div id="map" class="map"></div>        
     <br>
     <abbr title="Capas">    
-        <div id="fig"><img src="static/img/32px/layer.png"></div>
+        <div id="fig"><img src="static/img/64px/flecha.png"></div>
     </abbr>
     <abbr title="Información de las capas">
         <label id="fig1">
@@ -459,6 +465,26 @@
             $('img').remove('.imgsentineltruec');
         }
     });
+    //MB Gray
+    var wmsSourceGray = new ol.source.TileImage({
+        visible: true,
+        url: 'http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
+        });
+
+    var wmsLayerGray = new  ol.layer.Tile({
+        source: wmsSourceGray,
+        type: 'base',
+        visible: true,
+        zIndex: 0
+    });
+
+    $('#gray').click(function(){
+        map.addLayer(wmsLayerGray)
+        $(this).css('border-color','#ffffff')
+        map.removeLayer(wmsLayerOSM)
+        map.removeLayer(wmsLayerdark)
+        map.removeLayer(wmsLayersatel)
+    });
 
     //MB Satelital
     var wmsSourcesatel = new ol.source.TileImage({
@@ -478,6 +504,7 @@
         $(this).css('border-color','#ffffff')
         map.removeLayer(wmsLayerOSM)
         map.removeLayer(wmsLayerdark)
+        map.removeLayer(wmsLayerGray)
     });
     
 
@@ -499,6 +526,7 @@
         $(this).css('border-color','#ffffff')
         map.removeLayer(wmsLayersatel)
         map.removeLayer(wmsLayerdark)
+        map.removeLayer(wmsLayerGray)
     });
 
     //MB oscuro
@@ -519,6 +547,7 @@
         $(this).css('border-color','#ffffff')
         map.removeLayer(wmsLayersatel)
         map.removeLayer(wmsLayerOSM)
+        map.removeLayer(wmsLayerGray)
     });
 
     //Geocoder
