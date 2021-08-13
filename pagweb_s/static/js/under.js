@@ -1,6 +1,6 @@
 $(document).ready(under);
 
-var contador = 1;
+
 
 function under(){
   

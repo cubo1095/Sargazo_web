@@ -109,7 +109,8 @@ $(document).ready(searchsargazo);
             wmsLayersargazo.getSource().updateParams({'LAYERS': 'sargazo:sargazo', 'CQL_FILTER': cql_filter});
         })
             
-        //Función de rectángulo 
+        //Función de rectángulo
+        var contador = 1; 
         $('#fig2').click(function(){
             //Poligono
             boxControl =new ol.interaction.DragBox ({ 
