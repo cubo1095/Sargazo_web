@@ -16,6 +16,7 @@ function under(){
         $('#barras').animate({left: '-100%'});
         $('#fig').animate({left: '0.5%'});
     })
+    document.getElementById("defaultOpen").click();
         
 };
 
@@ -31,7 +32,6 @@ function openc(evt, act) {
     tablinks[i].className = tablinks[i].className.replace("active", "");
     }
     document.getElementById(act).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += "active";
 }
 
-document.getElementById("defaultOpen").click();

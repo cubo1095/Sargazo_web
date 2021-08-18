@@ -102,7 +102,8 @@
                         </div> -->
                         <div id="infolayer" class="tabcontent">
                             <h1>Selecciona una capa para obtener su información</h1>
-                            <select id="selectcapas"></select>
+                            <select id="selectcapas"><option value="sargazod">Sargazo</option></select>
+                            <input type="submit" value="Elegir" class="botton-ejecutar" id="elegir"/>
                             <div id="infolay"></div>
                         </div>
                         <div id="Capas" class="tabcontent">
@@ -307,6 +308,7 @@
         zIndex: 1
     });
     map.addLayer(wmsLayernidos);
+
     //Layer Áreas Naturales Protegidas
     var wmsSourceANP = new ol.source.TileWMS({
         visible: true,
