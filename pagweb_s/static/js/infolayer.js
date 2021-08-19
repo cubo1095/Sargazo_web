@@ -51,7 +51,7 @@ function infolay(){
     //Función de selección de capas para información
     $('#elegir').click(function(){
         cap = $('#selectcapas').val();
-        swal("Usted eligio la capa:"+cap);
+        // swal("Usted eligio la capa:"+cap);
         var infopuntoslayer =  function(){
             /*alert("Si funciona");*/
             
