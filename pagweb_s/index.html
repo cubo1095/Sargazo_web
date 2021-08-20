@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="Es"><!--Idioma Español-->
+    <head>
+        <meta charset="utf-8">
+        <meta name="Descripción" content="Sargazo LANOT"> <!--Nos genera una descripción de la pagina-->
+        <title>Visulizador de Sargazo LANOT</title> <!--Titulo de la pestaña en buscador-->
+        <!--meta name="viewport" content="width=device-width, user-scalable=no"--> <!--Ajusta la pagina a la pantalla-->
+        <meta name="Keywords" content="Incendios, LANOT, LAGE, México"> <!--Palabras clave-->
+        <link rel="styleSheet" href="static/css/Escritorio.css">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><!-- Adapta el ancho del navegador con el ancho del dispositivo-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="static/css/ol.css">
+        <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/build/ol.js" ></script><!--Javascript de OpenLayers-->
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>		
+        <link rel="stylesheet" href="static/css/ol-ext.css">  <!--ol-ext-->
+        <script src="static/js/ol-ext.js" type="text/javascript"></script><!--Javascript de ol-ext -->
+        <script src="http://code.jquery.com/jquery-latest.js"></script><!--Javascript de jquery-->
+        <script src="static/js/menu.js" type="text/javascript"></script>
+        <script src="static/js/under.js" type="text/javascript"></script>
+        <script src="static/js/Buscar_pc.js" type="text/javascript"></script><!--Relacionado con la consulta de puntos-->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="static/js/infolayer.js" type="text/javascript"></script><!--Información de puntos de calor-->
+        <script src="static/js/botones.js" type="text/javascript"></script>
+        <!-- <script src="static/js/slideimg.js"></script>Altura de simbología -->
+        <script src="static/js/sargazo.js"></script>
+        <!-- Geocoder -->
+        <link rel="stylesheet" href="static/js/ol-geocoder/ol-geocoder.css">
+        <script src="static/js/ol-geocoder/ol-geocoder.js" type="text/javascript"></script>
+        <script src="static/js/ol-geocoder/nominatim.js"></script>
+        <script src="static/js/ol-geocoder-debug.js" type="text/javascript"></script>
+        <script src="static/js/preloader.js" type="text/javascript"></script>
+        <!-- Sweetalert -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- <script src="static/js/main.js"></script> -->
+        
+    </head>
+    <body>
+        <div id="preloader"><img src="static/img/lanot_logo_b_1.png"></div>
+        <header>	
+            <div class="menu_bar">
+                <a><img src="static/img/32px/190-menu.png" class="menu"></a>
+                <a id=Sar>Visualizador de Sargazo LANOT</a>
+            </div>	
+                  
+            <nav>
+                <ul class="menu_mapcont">
+                    <li><a href="#" class="info"><img src="static/img/16px/269-info.png">Tutoriales</a></li>
+                    <li><a href="/pagweb_s/vistas.html" class="infoimage"><img src="static/img/16px/015-images.png">Vistas</a></li>
+                </ul>
+                
+            </nav>
+            <div class="conten">
+                <div class="tab">
+                    <button class="tablinks" onclick="openc(event, 'Capas')" id="defaultOpen">Capas</button>
+                    <button class="tablinks" onclick="openc(event, 'con')" >Consulta</button>
+                    <button class="tablinks" onclick="openc(event, 'infolayer')" >Información</button>
+                    <button class="tablinks" onclick="openc(event, 'Simbologia')">Simbología</button>
+                </div>
+                <!-- <div id="conpestañas"> -->
+				 
+                    <!--form action ="" method="post"-->
+                        <div id="con" class="tabcontent">
+                            
+                            <h1> Ingrese las fechas correspondientes para realizar su consulta </h1>    			
+                            <div class="busqueda" id="busqueda">      
+                            <label id="label" for=""> Inicio:</label>
+                            <br><input type="date" name="date3"  id="date3" min= "2021-05-21" required>
+    
+                            <br><label id="label" for=""> Término:</label>
+                            <br><input type="date" name="date4" id="date4" required>
+    
+                            <br><br>
+                            <div align="center"><input type="submit" value="Buscar" class="botton-Buscar" id="Buscar"/></div>    
+                            </div>
+    
+                            <h1> Consulta por Área de Sargazo</h1>
+                            <div id="busqueda" class="busqueda">
+                                <label for="" id="label"> Área en metros cuadrados</label>
+                                <select id="mayormenor">
+                                    <option value=">">Mayor que...</option>
+                                    <option value=">=">Mayor igual que...</option>
+                                    <option value="<">Menor que...</option>
+                                    <option value="<=">Menor igual que...</option>
+                                    <option value="==">Igual que...</option>
+                                </select>
+                                <br><input type="text" name="area" id="area">
+                                <br><br>
+                                <div align="center"><input type="submit" value="Ejecutar" class="botton-ejecutar" id="ejecutar"/></div>
+                                <br>
+                            </div>
+                        </div>
+    
+                        <!-- <div id="Descarga" class="tabcontent"> 
+                            <h1 href="#" class="descarga">Formatos de descarga:</h1>
+                            <div class="Formatos">
+                                <div align="center"><input  type="button" class="botton-Json" value="GeoJson" >
+                                <input type="button" class="botton-CSV" value="CSV">
+                                <input  type="button" class="botton-Shape" value="Shapefile" ></div>
+                            </div>
+                        </div> -->
+                        <div id="infolayer" class="tabcontent">
+                            <h1>Selecciona una capa para obtener su información</h1>
+                            <select id="selectcapas"><option value="sargazod">Sargazo</option></select>
+                            <input type="submit" value="Elegir" class="botton-ejecutar" id="elegir"/>
+                            <div id="infolay"></div>
+                        </div>
+                        <div id="Capas" class="tabcontent">
+                            <div class="Vectoriales">
+                                <h1>Vectoriales</h1>
+                                <input type="checkbox" id="sargazod" checked/>
+                                <label >Sargazo</label><br>
+                                <input type="checkbox" id="estados" checked/>
+                                <label for="check1">Estados</label><br>
+                                <input type="checkbox" id="anp" />
+                                <label for="check1">Áreas Naturales Protegidas</label><br>
+                                <input type="checkbox" id="hum" />
+                                <label for="check1">Humedales</label><br>
+                                <input type="checkbox" id="nidos" />
+                                <label for="check1">Nidos de tortugas</label><br>
+                                <input type="checkbox" id="man" />
+                                <label for="check1">Manglares</label><br>
+                                <input type="checkbox" id="insu" />
+                                <label for="check1">Islas</label><br>
+                                <input type="checkbox" id="estudio" checked/>
+                                <label for="check1">Zona de estudio</label><br>
+                            </div>
+                            <div class="Raster">
+                                <h1>Imágenes</h1>
+                                <input type="checkbox" id="sentineltc" value="1"/>
+                                <label for="check1">Sentinel TC</label><br>
+                            </div>
+                            <div class="BaseMap">
+                                <h1>Mapas Base</h1>
+                                <div align="center">
+                                <label id="mapbase">
+                                    
+                                    <img src="./static/img/satelite.png" width="60px" height="60px" id="satelital"><br>                                
+                                    <p>Satélite</p>
+                                </label>
+                                <label id="mapbase">
+                                    
+                                    <img src="./static/img/OSM.png" width="60px" height="60px" id="osm"><br>                                
+                                    <p text-align="center">OSM</p>
+                                </label>
+                                <label id="mapbase">
+                                    <!-- <input type="checkbox" id="oscuro" value="1"  /> -->
+                                    <img src="./static/img/gray.png" width="60px" height="60px" id="gray"><br>                                
+                                    <p>Gris</p>
+                                </label>
+                                <label id="mapbase">
+                                    <!-- <input type="checkbox" id="oscuro" value="1"  /> -->
+                                    <img src="./static/img/oscuro.png" width="60px" height="60px" id="oscuro"><br>                                
+                                    <p>Oscuro</p>
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Simbologia" class="tabcontent">
+                            <h1>Simbología</h1>
+                            <div id="imagen">
+                                <img src="static/img/Simbo/estados.png" class="imgest"/>
+                                <img src="static/img/Simbo/Sargazo_dis.png" class="imgsard">
+                            </div>
+                        </div>                                
+                <!-- </div> -->
+        </div>
+        <div class="icons"><img src="static/img/64px/pausa.png" id="barras"></div>
+        <!--div id="principal contenedor limpiar"-->
+            
+			
+        </header>
+    <div id="body-grapper"></div> 
+    <div id="mouse-position"></div>   
+    <section>
+          
+    <div id="map" class="map"></div>        
+    <br>
+    <abbr title="Capas">    
+        <div id="fig"><img src="static/img/64px/flecha.png"></div>
+    </abbr>
+    
+    <abbr title="Información por rectangulo">    
+        <div id="fig2"><img src="static/img/64px/rectangle.png"></div>
+    </abbr>
+   
+    
+    
+    
+    <script>
+        
+        //variables fechas
+    var fecha_1 = '0000-00-00';
+    var fecha_2 = '0000-00-00';
+    
+    //Agregamos variables de los horarios de las ultimas imagenes
+    var fecha = '{{ fechabi }}';
+    var hora = '{{ horabi }}';
+    function fechabi(){ 
+        swal("La fecha de la imagen es: "+fecha+ "y la hora: "+hora);
+    }
+    
+
+    //Creamos objeto mapa		
+    var map = new ol.Map({//Abrimos mapa
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.TileImage({
+                visible: true,
+                url: 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}'
+                }),
+                type: 'base',
+                visible: true,
+                zIndex: 0 
+            }),
+        ],
+        target: 'map',//target map
+        view: new ol.View({//Creamos vista del mapa
+            center: ol.proj.transform([-87, 20], 'EPSG:4326', 'EPSG:3857'),//Cambiamos proyección a WGS84
+            zoom: 8
+        })//Cerramos view
+    });//Cerramos mapa
+
+    //Creamos Barra de Escala
+    var scaleline = new ol.control.ScaleLine();
+                            
+    
+    //Creamos objeto posición del mouse	
+    var mousePositionControl = new ol.control.MousePosition({
+        className: 'custom-mouse-position',
+        projection: 'EPSG:4326',
+        target: document.getElementById('mouse-position'),
+        coordinateFormat: ol.coordinate.createStringXY(5),
+        undefinedHTML: '&nbsp;'
+    });//Cerramos objeto posición del mouse						
+        
+
+    //Layer Estados de la república 
+    var wmsSourceestados = new ol.source.TileWMS({
+        visible: true,
+        url: 'http://132.247.103.145:8080/geoserver/DGRU_LANOT/wms',
+        params: {'LAYERS':'DGRU_LANOT:coastline_mexicoMerc','TILED': true},
+        serverType: 'geoserver',
+        });
+
+    var wmsLayerestados = new  ol.layer.Tile({
+        source: wmsSourceestados,
+        zIndex: 1
+    });
+    map.addLayer(wmsLayerestados);
+    $('#estados').click(function(){
+        var imgest =  "static/img/Simbo/estados.png";
+        if($(this).is(':checked')){
+            map.addLayer(wmsLayerestados);
+            $('#imagen').append('<img src="'+imgest+'" class="imgest"/>');
+        } else {
+            map.removeLayer(wmsLayerestados);
+            $('img').remove('.imgest');
+        }
+    });
+
+    //Layer Sargazo
+    var wmsSourcesargazo = new ol.source.TileWMS({
+        visible: true,
+        url: 'http://132.247.103.145:8080/geoserver//wms',
+        params: {'LAYERS':'	sargazo:sargazo','TILED': true},
+        serverType: 'geoserver'
+        });
+
+    var wmsLayersargazo = new  ol.layer.Tile({
+        source: wmsSourcesargazo,
+        zIndex: 1
+    });
+    map.addLayer(wmsLayersargazo);
+    
+
+    
+    //Layer Zona de estudio
+    var wmsSourcezona = new ol.source.TileWMS({
+        visible: true,
+        url: 'http://132.247.103.145:8080/geoserver//wms',
+        params: {'LAYERS':'	sargazo:region_sargazo1','TILED': true},
+        serverType: 'geoserver'
+        });
+
+    var wmsLayerzona = new  ol.layer.Tile({
+        source: wmsSourcezona,
+        zIndex: 1
+    });
+    map.addLayer(wmsLayerzona);            
+    
+    //Layer Nidos Tortugas
+    var wmsSourcenidos = new ol.source.TileWMS({
+        visible: true,
+        url: 'http://localhost:8088/geoserver/Prueba/wms',
+        params: {'LAYERS':'	Prueba:nidostortu','TILED': true},
+        serverType: 'geoserver'
+        });
+
+    var wmsLayernidos = new  ol.layer.Tile({
+        source: wmsSourcenidos,
+        zIndex: 1
+    });
+    map.addLayer(wmsLayernidos);
+
+    //Layer Áreas Naturales Protegidas
+    var wmsSourceANP = new ol.source.TileWMS({
+        visible: true,
+        url: 'http://132.247.103.145:8080/geoserver/fires/wms',
+        params: {'LAYERS':'fires:ANP2020','TILED': true},
+        serverType: 'geoserver',
+        });
+
+    var wmsLayerANP = new  ol.layer.Tile({
+        source: wmsSourceANP,
+        zIndex: 1,
+        transparent: 'true'
+    });
+
+    $('#anp').click(function(){
+        var imganp = "static/img/Simbo/ANP.png";
+        if($(this).is(':checked')){
+            map.addLayer(wmsLayerANP);
+            $('#imagen').append('<img src="'+imganp+'" class="imganp"/>');
+        } else {
+            map.removeLayer(wmsLayerANP);
+            $('img').remove('.imganp');
+        }
+    });
+    
+    //Layer Humedales
+    var wmsSourcehumedales = new ol.source.TileWMS({
+        visible: true,
+        url: 'http://132.247.103.145:8080/geoserver/sargazo/wms',
+        params: {'LAYERS':'	sargazo:HumedalesQROO','TILED': true},
+        serverType: 'geoserver',
+        });
+
+    var wmsLayerhumedales = new  ol.layer.Tile({
+        source: wmsSourcehumedales,
+        zIndex: 1,
+        transparent: 'true'
+    });
+
+    $('#hum').click(function(){
+        var imganp = "static/img/Simbo/ANP.png";//jfkaljsdkfad
+        if($(this).is(':checked')){
+            map.addLayer(wmsLayerhumedales);
+            $('#imagen').append('<img src="'+imganp+'" class="imganp"/>');
+        } else {
+            map.removeLayer(wmsLayerhumedales);
+            $('img').remove('.imganp');
+        }
+    });
+
+    //Layer Manglares
+    var wmsSourceman = new ol.source.TileWMS({
+        visible: true,
+        url: 'http://132.247.103.145:8080/geoserver/sargazo/wms',
+        params: {'LAYERS':'sargazo:ManglarQROO','TILED': true},
+        serverType: 'geoserver',
+        });
+
+    var wmsLayerman = new  ol.layer.Tile({
+        source: wmsSourceman,
+        zIndex: 1,
+        transparent: 'true'
+    });
+
+    $('#man').click(function(){
+        var imgman = "static/img/Simbo/manglares.png";//jfkaljsdkfad
+        if($(this).is(':checked')){
+            map.addLayer(wmsLayerman);
+            $('#imagen').append('<img src="'+imgman+'" class="imgmang"/>');
+        } else {
+            map.removeLayer(wmsLayerman);
+            $('img').remove('.imgmang');
+        }
+    });
+
+    //Layer Insular
+    var wmsSourceinsu = new ol.source.TileWMS({
+        visible: true,
+        url: 'http://132.247.103.145:8080/geoserver/sargazo/wms',
+        params: {'LAYERS':'sargazo:Insultar_QROO','TILED': true},
+        serverType: 'geoserver',
+        });
+
+    var wmsLayerinsu = new  ol.layer.Tile({
+        source: wmsSourceinsu,
+        zIndex: 1,
+        transparent: 'true'
+    });
+
+    $('#insu').click(function(){
+        var imganp = "static/img/Simbo/ANP.png";//jfkaljsdkfad
+        if($(this).is(':checked')){
+            map.addLayer(wmsLayerinsu);
+            $('#imagen').append('<img src="'+imganp+'" class="imganp"/>');
+        } else {
+            map.removeLayer(wmsLayerinsu);
+            $('img').remove('.imganp');
+        }
+    });
+
+    //Marcador UNAM
+    var iconmarcadores=[];
+
+    var iconmarcador = new ol.Feature({
+    geometry: new ol.geom.Point(ol.proj.transform([-86.86801635451168, 20.86977283252566], 'EPSG:4326',     
+    'EPSG:3857')),
+    name: 'UNAM',
+    population: 4000,
+    rainfall: 500
+    });
+
+    iconmarcadores.push(iconmarcador);
+    
+    var vecSource = new ol.source.Vector({
+    features: iconmarcadores //add an array of features
+    });
+
+    var iconStyle = new ol.style.Style({
+        image: new ol.style.Icon(({
+            anchor: [20, 20],
+            anchorXUnits: 'pixels',
+            anchorYUnits: 'pixels',
+            opacity: 0.7,
+            zIndex: 0.8,
+            src: 'static/img/UNAM1.png'
+        }))
+    });
+
+
+    var vecLayer = new ol.layer.Vector({
+    source: vecSource,
+    style: iconStyle
+    });
+    
+    map.addLayer(vecLayer);
+
+    //Imagen  Sentinel TC
+    var wmsSourceSentinel = new ol.source.TileWMS({
+        visible: true,
+        url: 'http://132.247.103.145:8080/geoserver/LANOT/wms',
+        params: {'LAYERS': 'LANOT:S2_MSI_TC_20210531T160901','TILED': true},
+        serverType: 'geoserver',
+        });
+
+    var wmsLayerSentinel = new  ol.layer.Tile({
+        source: wmsSourceSentinel,
+        zIndex: 0.8
+    });
+    imgsentineltc = "static/img/Simbo/SentinelTC.png";
+    $('#sentineltc').click(function(){
+        heightsimbo(); //Se encuentra en el script slideimg.js y ajusta la altura de la caja de simbología
+        if($(this).is(':checked')){
+            map.addLayer(wmsLayerSentinel)
+            $('#imagen').append('<img src="'+imgsentineltc+'" class="imgsentineltruec"/>');
+        } else {
+            map.removeLayer(wmsLayerSentinel)
+            $('img').remove('.imgsentineltruec');
+        }
+    });
+    
+    //MB Gray
+    var wmsSourceGray = new ol.source.TileImage({
+        visible: true,
+        url: 'http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
+        });
+
+    var wmsLayerGray = new  ol.layer.Tile({
+        source: wmsSourceGray,
+        type: 'base',
+        visible: true,
+        zIndex: 0
+    });
+
+    $('#gray').click(function(){
+        map.addLayer(wmsLayerGray)
+        $(this).css('border-color','#ffffff')
+        map.removeLayer(wmsLayerOSM)
+        map.removeLayer(wmsLayerdark)
+        map.removeLayer(wmsLayersatel)
+    });
+
+    //MB Satelital
+    var wmsSourcesatel = new ol.source.TileImage({
+        visible: true,
+        url: 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}'
+        });
+
+    var wmsLayersatel = new  ol.layer.Tile({
+        source: wmsSourcesatel,
+        type: 'base',
+        visible: true,
+        zIndex: 0
+    });
+
+    $('#satelital').click(function(){
+        map.addLayer(wmsLayersatel)
+        $(this).css('border-color','#ffffff')
+        map.removeLayer(wmsLayerOSM)
+        map.removeLayer(wmsLayerdark)
+        map.removeLayer(wmsLayerGray)
+    });
+    
+
+    //MB OSM
+    var wmsSourceOSM = new ol.source.TileImage({
+        visible: true,
+        url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        });
+
+    var wmsLayerOSM = new  ol.layer.Tile({
+        source: wmsSourceOSM,
+        type: 'base',
+        visible: true,
+        zIndex: 0
+    });
+
+    $('#osm').click(function(){
+        map.addLayer(wmsLayerOSM)
+        $(this).css('border-color','#ffffff')
+        map.removeLayer(wmsLayersatel)
+        map.removeLayer(wmsLayerdark)
+        map.removeLayer(wmsLayerGray)
+    });
+
+    //MB oscuro
+    var wmsSourcedark = new ol.source.TileImage({
+        visible: true,
+        url: 'http://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
+        });
+
+    var wmsLayerdark = new  ol.layer.Tile({
+        source: wmsSourcedark,
+        type: 'base',
+        visible: true,
+        zIndex: 0
+    });
+
+    $('#oscuro').click(function(){
+        map.addLayer(wmsLayerdark)
+        $(this).css('border-color','#ffffff')
+        map.removeLayer(wmsLayersatel)
+        map.removeLayer(wmsLayerOSM)
+        map.removeLayer(wmsLayerGray)
+    });
+
+    //Geocoder
+    const geocoder = new Geocoder('nominatim', {
+    provider: 'osm',
+    targetType: 'text-input',
+    lang: 'en',
+    placeholder: 'Busca un lugar...',
+    limit: 5,
+    keepOpen: false,
+    });
+
+    geocoder.on('addresschosen', function(evt){
+    var feature = evt.feature,
+        coord = evt.coordinate,
+        address = evt.address;
+    // some popup solution
+    content.innerHTML = '<p>'+ address.formatted +'</p>';
+    overlay.setPosition(coord);
+    });
+
+    
+    //Agregamos objetos al mapa	
+    map.addControl(scaleline);//Agregamos barra de esacala
+    map.addControl(geocoder);//Agregamos geocoder
+    map.addControl(mousePositionControl);
+    </script>
+    </section>
+    
+    </body>
+</html>
+
+
+
+
