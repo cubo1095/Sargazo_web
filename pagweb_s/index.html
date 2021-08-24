@@ -5,7 +5,7 @@
         <meta name="Descripción" content="Sargazo LANOT"> <!--Nos genera una descripción de la pagina-->
         <title>Visulizador de Sargazo LANOT</title> <!--Titulo de la pestaña en buscador-->
         <!--meta name="viewport" content="width=device-width, user-scalable=no"--> <!--Ajusta la pagina a la pantalla-->
-        <meta name="Keywords" content="Incendios, LANOT, LAGE, México"> <!--Palabras clave-->
+        <meta name="Keywords" content="Sargazo, LANOT, LAGE, México, UNAM"> <!--Palabras clave-->
         <link rel="styleSheet" href="static/css/Escritorio.css">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><!-- Adapta el ancho del navegador con el ancho del dispositivo-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -41,7 +41,8 @@
         <header>	
             <div class="menu_bar">
                 <a><img src="static/img/32px/190-menu.png" class="menu"></a>
-                <a id=Sar>Visualizador de Sargazo LANOT</a>
+               
+                <a id=Sar><img src="static/img/lanot_logo_b.png" class="lanot">   Visualizador de Sargazo</a>
             </div>	
                   
             <nav>
@@ -92,18 +93,10 @@
                             </div>
                         </div>
     
-                        <!-- <div id="Descarga" class="tabcontent"> 
-                            <h1 href="#" class="descarga">Formatos de descarga:</h1>
-                            <div class="Formatos">
-                                <div align="center"><input  type="button" class="botton-Json" value="GeoJson" >
-                                <input type="button" class="botton-CSV" value="CSV">
-                                <input  type="button" class="botton-Shape" value="Shapefile" ></div>
-                            </div>
-                        </div> -->
                         <div id="infolayer" class="tabcontent">
                             <h1>Selecciona una capa para obtener su información</h1>
                             <select id="selectcapas"><option value="sargazod">Sargazo</option></select>
-                            <input type="submit" value="Elegir" class="botton-ejecutar" id="elegir"/>
+                            <input type="submit" value="Elegir" class="botton-elegir" id="elegir"/>
                             <div id="infolay"></div>
                         </div>
                         <div id="Capas" class="tabcontent">
@@ -129,7 +122,9 @@
                             <div class="Raster">
                                 <h1>Imágenes</h1>
                                 <input type="checkbox" id="sentineltc" value="1"/>
-                                <label for="check1">Sentinel TC</label><br>
+                                <label for="check1">Sentinel color verdadero</label><br>
+                                <input type="checkbox" id="sentinelfal" value="1"/>
+                                <label for="check1">Sentinel falso color (B8A,B05,B04)</label><br>
                             </div>
                             <div class="BaseMap">
                                 <h1>Mapas Base</h1>
@@ -204,17 +199,6 @@
 
     //Creamos objeto mapa		
     var map = new ol.Map({//Abrimos mapa
-        layers: [
-            new ol.layer.Tile({
-                source: new ol.source.TileImage({
-                visible: true,
-                url: 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}'
-                }),
-                type: 'base',
-                visible: true,
-                zIndex: 0 
-            }),
-        ],
         target: 'map',//target map
         view: new ol.View({//Creamos vista del mapa
             center: ol.proj.transform([-87, 20], 'EPSG:4326', 'EPSG:3857'),//Cambiamos proyección a WGS84
@@ -235,7 +219,7 @@
         undefinedHTML: '&nbsp;'
     });//Cerramos objeto posición del mouse						
         
-
+    
     //Layer Estados de la república 
     var wmsSourceestados = new ol.source.TileWMS({
         visible: true,
@@ -427,7 +411,7 @@
             anchorXUnits: 'pixels',
             anchorYUnits: 'pixels',
             opacity: 0.7,
-            zIndex: 0.8,
+            zIndex: 10,
             src: 'static/img/UNAM1.png'
         }))
     });
@@ -443,8 +427,8 @@
     //Imagen  Sentinel TC
     var wmsSourceSentinel = new ol.source.TileWMS({
         visible: true,
-        url: 'http://132.247.103.145:8080/geoserver/LANOT/wms',
-        params: {'LAYERS': 'LANOT:S2_MSI_TC_20210531T160901','TILED': true},
+        url: 'http://132.247.103.145:8080/geoserver/sargazo/wms',
+        params: {'LAYERS': 'sargazo:latest_TC','TILED': true},
         serverType: 'geoserver',
         });
 
@@ -454,7 +438,7 @@
     });
     imgsentineltc = "static/img/Simbo/SentinelTC.png";
     $('#sentineltc').click(function(){
-        heightsimbo(); //Se encuentra en el script slideimg.js y ajusta la altura de la caja de simbología
+        // heightsimbo(); //Se encuentra en el script slideimg.js y ajusta la altura de la caja de simbología
         if($(this).is(':checked')){
             map.addLayer(wmsLayerSentinel)
             $('#imagen').append('<img src="'+imgsentineltc+'" class="imgsentineltruec"/>');
@@ -464,6 +448,29 @@
         }
     });
     
+     //Imagen  Sentinel false color (B8A,B05,B04)
+     var wmsSourceSentinelfal = new ol.source.TileWMS({
+        visible: true,
+        url: 'http://132.247.103.145:8080/geoserver/sargazo/wms',
+        params: {'LAYERS': 'sargazo:latest_sargazo','TILED': true},
+        serverType: 'geoserver',
+        });
+
+    var wmsLayerSentinelfal = new  ol.layer.Tile({
+        source: wmsSourceSentinelfal,
+        zIndex: 0.8
+    });
+    imgsentinelfal = "static/img/Simbo/SentinelTC.png";
+    $('#sentinelfal').click(function(){
+        // heightsimbo(); //Se encuentra en el script slideimg.js y ajusta la altura de la caja de simbología
+        if($(this).is(':checked')){
+            map.addLayer(wmsLayerSentinelfal)
+            $('#imagen').append('<img src="'+imgsentinelfal+'" class="imgsentinelfalse"/>');
+        } else {
+            map.removeLayer(wmsLayerSentinelfal)
+            $('img').remove('.imgsentinelfalse');
+        }
+    });
     //MB Gray
     var wmsSourceGray = new ol.source.TileImage({
         visible: true,
@@ -484,7 +491,7 @@
         map.removeLayer(wmsLayerdark)
         map.removeLayer(wmsLayersatel)
     });
-
+    map.addLayer(wmsLayerGray);
     //MB Satelital
     var wmsSourcesatel = new ol.source.TileImage({
         visible: true,

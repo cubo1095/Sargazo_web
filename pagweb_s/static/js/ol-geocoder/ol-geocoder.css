@@ -122,13 +122,13 @@
 /*********Contenedor search*********/
 .ol-geocoder.gcd-txt-container {
   position: absolute;
-  width: 2.5em;
-  height: 3.375em;
-  top: 0.5em;
-  left: 0.5em;
+  width: 11em;
+  /* height: 3.375em; */
+  top: 1em;
+  right: 1.5em;
   box-sizing: border-box; 
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
+  -webkit-transition: width 0.4s ease-in;
+  transition: width 0.4s ease-in;
   
 }
 
@@ -142,13 +142,13 @@
   box-sizing: inherit; }*/
 
 .ol-geocoder.gcd-txt-container::before {
-  width: 6em;
+  width: 15em;
 }
 
 .ol-geocoder .gcd-txt-control {
   position: relative;
   width: 100%;
-  height: 3.375em;
+  height: 2.5em;
   border: 1px solid black;
   background-color: white;
   overflow: hidden; 
@@ -190,7 +190,7 @@
   outline: 0;
   cursor: pointer; }
 
-  .ol-geocoder .gcd-txt-reset::after {
+  .ol-geocoder .gcd-txt-reset::after {/*Marca de X*/
     content: "\d7";
     display: inline-block;
     color: #333;
@@ -212,9 +212,9 @@
 
 .ol-geocoder ul.gcd-txt-result {
   position: absolute;
-  top: 3.575em;
+  top: 2.7em;
   left: 0;
-  width: 20em;
+  width: 15em;
   max-height: 18.75em;
   white-space: normal;
   list-style: none;

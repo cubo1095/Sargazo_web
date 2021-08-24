@@ -88,7 +88,7 @@ div.conten::-webkit-scrollbar {
 }
 
 div.conten::-webkit-scrollbar-thumb {
-    background: #189907;
+    background: #37a345;
     border-radius: 5px;
 }
 div.tab button{
@@ -100,7 +100,7 @@ div.tab button{
     
 }
 div.tab button.active {
-    background-color: #189907;
+    background-color: #37a345;
     
 }
 
@@ -115,16 +115,12 @@ img.menu{
     filter: invert(1);
 }
 
-img#lanot{
+img.lanot{
     float: left;
     padding: 5px 0 0 20px;
     
 }
 
-img.home{
-    float: right;
-    filter: invert(1);
-}
 
 header nav ul li img {
     margin-right: 20px;
@@ -132,7 +128,7 @@ header nav ul li img {
 }
 
 header nav ul li a:hover{
-    background: #189907;
+    background: #37a345;
     color: white;
     text-decoration:none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -150,8 +146,9 @@ header div.menu_map {
 header a#Sar{
     font-size: 25px;
     color: #ffffff;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Verdana;
     padding: 1% 1% 1.5% 3%;
+    user-select: none;
 }
 
 /****************Recuadros h1********************/
@@ -226,7 +223,7 @@ div#con .busqueda{
         
 }
 
-div#con .botton-Buscar, .botton-ejecutar, #mayormenor , #ejecutar{
+div#con input.botton-Buscar, div#con input.botton-ejecutar, #elegir {
     text-decoration:none;
     font-weight: 600;
     font-size: 15px;
@@ -288,11 +285,10 @@ div#con::-webkit-scrollbar-thumb {
     width: 25em;
 }
 
-
+#infolay{
+    height:80%;
+}
 /*****************Capas****************/
-
-
-
 
 
 div#Capas {
@@ -446,10 +442,8 @@ div#Simbologia::-webkit-scrollbar-thumb {
 }
 
 /**************************imagen barras y flecha**********************/
-header div.icons {
-    
-}
-img#barras{
+
+.icons img{
     z-index: 2;
     width: 2.5em;
     display: inline-block;
@@ -459,40 +453,53 @@ img#barras{
     border-style: solid;
     border-width: 2px;
     border-left: none;
+    border-top-right-radius: 1.3em;
+    border-bottom-right-radius: 1.3em;
     filter: invert(1);
     background: rgb(218, 219, 219, 0.7);
     left: 26em;
 } 
+
+.icons img:hover{
+    border-top-right-radius: 1.3em;
+    border-bottom-right-radius: 1.3em;
+    background: black;
+    filter: invert(0);
+
+}
+
 #fig img{
     /* position: relative; */
     left: -100%;
     z-index: 1;
     filter: invert(1);
     border: 2px solid;
-    background: rgb(218, 219, 219, 0.7);
+    background: rgb(218, 219, 219, 0.5);
     border-color: black;
-    border-radius: 5px;
+    border-left: none;
+    border-top-right-radius: 1.3em;
+    border-bottom-right-radius: 1.3em;
     width: 2.5em;
     display: inline-block;
-    padding: 1em 0.5em 4em 0.5em;
+    padding: 1em 0.5em 10em 0.5em;
     
 }
 #fig{
     position: absolute;
     display: block;
-    top: 8em;
+    top: 4.5em;
     left: -100%;
    
 }
 
 #fig:hover{
     border: 2px solid;
-    border-color: black;
+    background: black;
     border-radius: 5px;
 }
  /*******************************Mouse-Position******************************/
  #mouse-position{
-    background: rgb(37, 36, 36, 0.7);
+    background: rgb(37, 36, 36, 0.5);
     color: #ffff;
     z-index: 3;
     position: absolute;
@@ -504,8 +511,6 @@ img#barras{
     padding-right: 10px;
  }
 /************************************iframe***********************************/
-
-
 
 iframe {
     width: 100%;
