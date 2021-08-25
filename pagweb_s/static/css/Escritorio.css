@@ -460,13 +460,13 @@ div#Simbologia::-webkit-scrollbar-thumb {
     left: 26em;
 } 
 
-.icons img:hover{
+/* .icons img:hover{
     border-top-right-radius: 1.3em;
     border-bottom-right-radius: 1.3em;
     background: black;
     filter: invert(0);
 
-}
+} */
 
 #fig img{
     /* position: relative; */
