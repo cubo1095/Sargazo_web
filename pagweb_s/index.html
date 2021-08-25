@@ -78,7 +78,7 @@
     
                             <h1> Consulta por Área de Sargazo</h1>
                             <div id="busqueda" class="busqueda">
-                                <label for="" id="label"> Área en metros cuadrados</label>
+                                <label for="" id="label"> Área en kilometros cuadrados</label>
                                 <select id="mayormenor">
                                     <option value=">">Mayor que...</option>
                                     <option value=">=">Mayor igual que...</option>
@@ -161,7 +161,7 @@
                         </div>                                
                 <!-- </div> -->
         </div>
-        <div class="icons"><img src="static/img/64px/pausa.png" id="barras"></div>
+        <div id="icons"><img src="static/img/64px/pausa.png" id="barras"></div>
         <!--div id="principal contenedor limpiar"-->
             
 			
@@ -176,9 +176,9 @@
         <div id="fig"><img src="static/img/64px/flecha.png"></div>
     </abbr>
     
-    <abbr title="Información por rectangulo">    
+    <!-- <abbr title="Información por rectangulo">    
         <div id="fig2"><img src="static/img/64px/rectangle.png"></div>
-    </abbr>
+    </abbr> -->
    
     
     
@@ -199,9 +199,9 @@
 
     //Creamos objeto mapa		
     var map = new ol.Map({//Abrimos mapa
-        target: 'map',//target map
+        target: 'map',
         view: new ol.View({//Creamos vista del mapa
-            center: ol.proj.transform([-87, 20], 'EPSG:4326', 'EPSG:3857'),//Cambiamos proyección a WGS84
+            center: ol.proj.transform([-87, 20],'EPSG:4326', 'EPSG:3857'),//Cambiamos proyección a WGS84
             zoom: 8
         })//Cerramos view
     });//Cerramos mapa
@@ -331,10 +331,10 @@
         var imganp = "static/img/Simbo/ANP.png";//jfkaljsdkfad
         if($(this).is(':checked')){
             map.addLayer(wmsLayerhumedales);
-            $('#imagen').append('<img src="'+imganp+'" class="imganp"/>');
+            // $('#imagen').append('<img src="'+imganp+'" class="imganp"/>');
         } else {
             map.removeLayer(wmsLayerhumedales);
-            $('img').remove('.imganp');
+            // $('img').remove('.imganp');
         }
     });
 
@@ -381,10 +381,10 @@
         var imganp = "static/img/Simbo/ANP.png";//jfkaljsdkfad
         if($(this).is(':checked')){
             map.addLayer(wmsLayerinsu);
-            $('#imagen').append('<img src="'+imganp+'" class="imganp"/>');
+            // $('#imagen').append('<img src="'+imganp+'" class="imganp"/>');
         } else {
             map.removeLayer(wmsLayerinsu);
-            $('img').remove('.imganp');
+            // $('img').remove('.imganp');
         }
     });
 
@@ -407,12 +407,12 @@
 
     var iconStyle = new ol.style.Style({
         image: new ol.style.Icon(({
-            anchor: [20, 20],
             anchorXUnits: 'pixels',
             anchorYUnits: 'pixels',
+            scale: 0.09,
             opacity: 0.7,
-            zIndex: 10,
-            src: 'static/img/UNAM1.png'
+            zIndex: 100,
+            src: 'static/img/icmyl.png'
         }))
     });
 
@@ -481,7 +481,7 @@
         source: wmsSourceGray,
         type: 'base',
         visible: true,
-        zIndex: 0
+        zIndex: -1
     });
 
     $('#gray').click(function(){
@@ -502,7 +502,7 @@
         source: wmsSourcesatel,
         type: 'base',
         visible: true,
-        zIndex: 0
+        zIndex: -1
     });
 
     $('#satelital').click(function(){
@@ -524,7 +524,7 @@
         source: wmsSourceOSM,
         type: 'base',
         visible: true,
-        zIndex: 0
+        zIndex: -1
     });
 
     $('#osm').click(function(){
@@ -545,7 +545,7 @@
         source: wmsSourcedark,
         type: 'base',
         visible: true,
-        zIndex: 0
+        zIndex: -1
     });
 
     $('#oscuro').click(function(){

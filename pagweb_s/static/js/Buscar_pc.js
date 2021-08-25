@@ -104,7 +104,7 @@ $(document).ready(searchsargazo);
         $('#ejecutar').click(function(){
             signo = $('#mayormenor').val();
             area = $('#area').val();
-            cql_filter = "fecha between '"+fecha_1+"' and '"+fecha_2+"' and area"+signo+""+area;
+            cql_filter = "fecha between '"+fecha_1+"' and '"+fecha_2+"' and area_km2"+signo+""+area;
             swal('Su consulta corresponde a las fechas: '+fecha_1+' y '+fecha_2+'. Área'+signo+''+area+' metros cuadrados.');       
             wmsLayersargazo.getSource().updateParams({'LAYERS': 'sargazo:sargazo', 'CQL_FILTER': cql_filter});
         })

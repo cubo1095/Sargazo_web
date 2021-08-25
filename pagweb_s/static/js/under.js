@@ -6,16 +6,16 @@ function under(){
   
     $('#fig').click(function(){
         $('.conten').animate({left: '0'},2000);
-        $('.icons').animate({left: '26em'},2200);
-        $('#fig').animate({left: '-100%'},1000);
+        $('#icons').animate({left: '26em'},2200);
+        $('#fig').animate({left: '-100%'},1500);
            
         
     });
-    $('.icons').click(function(){
+    $('#icons').click(function(){
         $('.conten').animate({left: '-100%'},2000);
-        $('.icons').animate({left: '-100%'},2200);
+        $('#icons').animate({left: '-100%'},2200);
         $('#fig').animate({left: '0%'},1500);
-    })
+    });
     document.getElementById("defaultOpen").click();
         
 };

@@ -33,13 +33,16 @@ function infolay(){
                 $('#selectcapas').append('<option value="man">Manglares</option>')
                 break;
                 case ids[i]=='insu':
-                $('#selectcapas').append('<option value="insu">Territorio insular</option>')
+                $('#selectcapas').append('<option value="insu">Islasr</option>')
                 break;
                 case ids[i]=='estudio':
                 $('#selectcapas').append('<option value="estudio">Zona de estudio</option>')
                 break;
                 case ids[i]=='sentineltc':
                 $('#selectcapas').append('<option value="sentineltc">Sentinel TC</option>')
+                break;
+                case ids[i]=='sentinelfal':
+                $('#selectcapas').append('<option value="sentinelfal">Sentinel FC</option>')
                 break;
             }
         }
@@ -69,9 +72,10 @@ function infolay(){
                         var url = wmsSourcesargazo.getFeatureInfoUrl(
                             evt.coordinate,
                             viewResolution,
-                            'EPSG:3857',
+                            'EPSG:4326',
                             {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
                         );
+                        alert(evt.coordinate);
                         document.getElementById('infolay').innerHTML = '<iframe seamless id="24pc" src="' + url + '"></iframe>';
                     break;
                     case cap=='estados':
@@ -87,6 +91,66 @@ function infolay(){
                     case cap=='anp':
                         // infopuntoslayer();
                         var url = wmsSourceANP.getFeatureInfoUrl(
+                            evt.coordinate,
+                            viewResolution,
+                            'EPSG:3857',
+                            {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
+                        );
+                        document.getElementById('infolay').innerHTML = '<iframe seamless id="24pc" src="' + url + '"></iframe>';
+                    break;
+                    case cap=='hum':
+                        // infopuntoslayer();
+                        var url = wmsSourcehumedales.getFeatureInfoUrl(
+                            evt.coordinate,
+                            viewResolution,
+                            'EPSG:3857',
+                            {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
+                        );
+                        document.getElementById('infolay').innerHTML = '<iframe seamless id="24pc" src="' + url + '"></iframe>';
+                    break;
+                    case cap=='nidos':
+                        // infopuntoslayer();
+                        var url = wmsSourcenidos.getFeatureInfoUrl(
+                            evt.coordinate,
+                            viewResolution,
+                            'EPSG:3857',
+                            {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
+                        );
+                        document.getElementById('infolay').innerHTML = '<iframe seamless id="24pc" src="' + url + '"></iframe>';
+                    break;
+                    case cap=='man':
+                        // infopuntoslayer();
+                        var url = wmsSourceman.getFeatureInfoUrl(
+                            evt.coordinate,
+                            viewResolution,
+                            'EPSG:3857',
+                            {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
+                        );
+                        document.getElementById('infolay').innerHTML = '<iframe seamless id="24pc" src="' + url + '"></iframe>';
+                    break;
+                    case cap=='insu':
+                        // infopuntoslayer();
+                        var url = wmsSourceinsu.getFeatureInfoUrl(
+                            evt.coordinate,
+                            viewResolution,
+                            'EPSG:3857',
+                            {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
+                        );
+                        document.getElementById('infolay').innerHTML = '<iframe seamless id="24pc" src="' + url + '"></iframe>';
+                    break;
+                    case cap=='sentineltc':
+                        // infopuntoslayer();
+                        var url = wmsSourceSentinel.getFeatureInfoUrl(
+                            evt.coordinate,
+                            viewResolution,
+                            'EPSG:3857',
+                            {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
+                        );
+                        document.getElementById('infolay').innerHTML = '<iframe seamless id="24pc" src="' + url + '"></iframe>';
+                    break;
+                    case cap=='sentinelfal':
+                        // infopuntoslayer();
+                        var url = wmsSourceSentinelfal.getFeatureInfoUrl(
                             evt.coordinate,
                             viewResolution,
                             'EPSG:3857',

@@ -443,7 +443,8 @@ div#Simbologia::-webkit-scrollbar-thumb {
 
 /**************************imagen barras y flecha**********************/
 
-.icons img{
+#icons img{
+    filter: invert(1);
     z-index: 2;
     width: 2.5em;
     display: inline-block;
@@ -456,17 +457,22 @@ div#Simbologia::-webkit-scrollbar-thumb {
     border-top-right-radius: 1.3em;
     border-bottom-right-radius: 1.3em;
     filter: invert(1);
-    background: rgb(218, 219, 219, 0.7);
-    left: 26em;
+    background: rgb(218, 219, 219, 0.5);
+    left: 0;
 } 
 
-/* .icons img:hover{
+#icons{
+    position: absolute;
+    display: block;
+    left: 26em;
+}
+#icons img:hover{
     border-top-right-radius: 1.3em;
     border-bottom-right-radius: 1.3em;
-    background: black;
-    filter: invert(0);
+    background: #ffff;
+    
 
-} */
+}
 
 #fig img{
     /* position: relative; */
@@ -495,7 +501,8 @@ div#Simbologia::-webkit-scrollbar-thumb {
 #fig:hover{
     border: 2px solid;
     background: black;
-    border-radius: 5px;
+    border-top-right-radius: 1.3em;
+    border-bottom-right-radius: 1.3em;
 }
  /*******************************Mouse-Position******************************/
  #mouse-position{
