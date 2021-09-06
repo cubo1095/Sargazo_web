@@ -125,6 +125,8 @@
                                 <label for="check1">Sentinel color verdadero</label><br>
                                 <input type="checkbox" id="sentinelfal" value="1"/>
                                 <label for="check1">Sentinel falso color (B8A,B05,B04)</label><br>
+                                <input type="checkbox" id="gebco" checked/>
+                                <label for="check1">Mapa Batimetrico GEBCO</label><br>
                             </div>
                             <div class="BaseMap">
                                 <h1>Mapas Base</h1>
@@ -245,10 +247,11 @@
     });
 
     //Layer Sargazo
+    cql_date= "fechadia = '2021-08-24'";
     var wmsSourcesargazo = new ol.source.TileWMS({
         visible: true,
         url: 'http://132.247.103.145:8080/geoserver//wms',
-        params: {'LAYERS':'	sargazo:sargazo','TILED': true},
+        params: {'LAYERS':'	sargazo:sargazo','TILED': true,'CQL_FILTER': cql_date},
         serverType: 'geoserver'
         });
 
@@ -257,6 +260,29 @@
         zIndex: 1
     });
     map.addLayer(wmsLayersargazo);
+
+    //Layer Gebco
+    var wmsSourceGEBCO = new ol.source.TileWMS({
+        visible: true,
+        url: 'https://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv?crs=EPSG:4326&dpiMode=7&format=image/png&layers=GEBCO_LATEST&styles',
+        
+        serverType: 'GEBCO'
+        });
+
+    var wmsLayerGEBCO = new  ol.layer.Tile({
+        source: wmsSourceGEBCO,
+        zIndex: 0.5
+    });
+    $('#gebco').click(function(){
+        // var imgest =  "static/img/Simbo/estados.png";
+        if($(this).is(':checked')){
+            map.addLayer(wmsLayerGEBCO);
+            // $('#imagen').append('<img src="'+imgest+'" class="imgest"/>');
+        } else {
+            map.removeLayer(wmsLayerGEBCO);
+            // $('img').remove('.imgest');
+        }
+    });
     
 
     
