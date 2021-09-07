@@ -2,6 +2,7 @@
 *{
     margin:0%;
     padding:0%;
+    font-size: 18px;
 }
 
 body{
@@ -83,14 +84,14 @@ header div.conten {
     /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
 }
 
-div.conten::-webkit-scrollbar {
+/* div.conten::-webkit-scrollbar {
     width: 7px;
 }
 
 div.conten::-webkit-scrollbar-thumb {
     background: #37a345;
     border-radius: 5px;
-}
+} */
 div.tab button{
     padding: 14px 16px;
     color: #ffff;
@@ -155,7 +156,7 @@ header a#Sar{
 div#infolayer h1, div#Capas h1 , div#Simbologia h1, div#con h1{
     text-align: center;
     padding: 10px;
-    width: 25em;
+    width: 26em;
     font-family: Verdana;
     background: #37a345;
     font-size: 15px;
@@ -199,7 +200,7 @@ div#infolayer h1, div#Capas h1 , div#Simbologia h1, div#con h1{
 }
 /* display de consulta */
 
-div.con{
+div#con{
     display: block;
     width: 25em;
     left: -100%;
@@ -220,7 +221,7 @@ div.con{
 div#con .busqueda{
     padding: 5px 0px 0px 10px;
     margin-right: 10px;
-        
+  
 }
 
 div#con input.botton-Buscar, div#con input.botton-ejecutar, #elegir {
@@ -512,7 +513,7 @@ div#Simbologia::-webkit-scrollbar-thumb {
     position: absolute;
     bottom: 1%;
     right: 5%;
-    width: 170px;
+    width: 10.5em;
     border: 2px solid white;
     padding-left: 10px;
     padding-right: 10px;
