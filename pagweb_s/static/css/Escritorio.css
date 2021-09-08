@@ -185,6 +185,22 @@ div#infolayer h1, div#Capas h1 , div#Simbologia h1, div#con h1{
        width: 40%;
    }
 
+   header div.conten {
+    width: 20em;
+    left: 0;
+    height: 89%;
+    overflow: auto;
+    /* padding: 0; */
+    color: white;
+    /* text-shadow: 0.5px 0.5px #189907; */
+    background-color: rgb(37, 36, 36, 0.7);
+    position: fixed;
+    z-index: 3;
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+}
 } 
 
 
@@ -198,22 +214,16 @@ div#infolayer h1, div#Capas h1 , div#Simbologia h1, div#con h1{
 	height: calc(100% - 50px);
     
 }
-/* display de consulta */
+
+
+/********************** display de consulta **************************/
 
 div#con{
     display: block;
-    width: 25em;
-    left: -100%;
-    padding: 0;
-    top: 9em;
-    color: white;
-    background-color: rgb(37, 36, 36);
     position: absolute;
-    border-color: white;
-    border: 2px solid;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    height: 500px;
+    height: 90%;
     overflow: auto;
+    user-select: none;
 }
 
 
@@ -266,7 +276,7 @@ div#con label#label{
 }
 
 div#con::-webkit-scrollbar {
-    width: 5px;
+    width: 7px;
     
 }
 
@@ -293,15 +303,12 @@ div#con::-webkit-scrollbar-thumb {
 
 
 div#Capas {
-    /* width: 24em;  */
-    /* padding: 0; */
     padding: 5px 10px;
     height: 90%;
     overflow: auto;
     color: white;
-    text-shadow: 0.5px 0.5px #189907;
-    /* background-color: rgb(37, 36, 36, 0.7); */
     position: absolute;
+    user-select: none;
 }
 div#Capas::-webkit-scrollbar {
     width: 7px;
@@ -312,36 +319,6 @@ div#Capas::-webkit-scrollbar-thumb {
     background: #189907;
     border-radius: 7px;
 }
-#fecha{
-    position: absolute;
-    left: 0.5em;
-    z-index: 1;
-    filter: invert(1);
-    border: 2px solid;
-    background: white;
-    border-color: black;
-    border-radius: 5px;
-    top: 9em;
-    z-index: 2;
-    
-}
-
-#download{
-    position: absolute;
-    left: 0.5em;
-    z-index: 1;
-    filter: invert(1);
-    border: 2px solid;
-    background: white;
-    border-color: black;
-    border-radius: 5px;
-    top: 12em;
-    z-index: 2;
-
-}
-
-
-
 
 div#Capas p{
     text-align: justify;
@@ -349,6 +326,10 @@ div#Capas p{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
     
+}
+
+#hycomcont{
+    padding-left: 1em;
 }
 
 /***************+*Mapa Base*************************/

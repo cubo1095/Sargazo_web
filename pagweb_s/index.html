@@ -22,7 +22,6 @@
         <script src="static/js/Buscar_pc.js" type="text/javascript"></script><!--Relacionado con la consulta de puntos-->
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="static/js/infolayer.js" type="text/javascript"></script><!--Información de puntos de calor-->
-        <script src="static/js/botones.js" type="text/javascript"></script>
         <!-- <script src="static/js/slideimg.js"></script>Altura de simbología -->
         <script src="static/js/sargazo.js"></script>
         <!-- Geocoder -->
@@ -105,7 +104,7 @@
                                 <input type="checkbox" id="sargazod" checked/>
                                 <label >Sargazo</label><br>
                                 <input type="checkbox" id="estados" checked/>
-                                <label for="check1">Estados</label><br>
+                                <label for="check1">Estados y línea de costa</label><br>
                                 <input type="checkbox" id="anp" />
                                 <label for="check1">Áreas Naturales Protegidas</label><br>
                                 <input type="checkbox" id="hum" />
@@ -116,6 +115,8 @@
                                 <label for="check1">Manglares</label><br>
                                 <input type="checkbox" id="insu" />
                                 <label for="check1">Islas</label><br>
+                                <label id="hycomser">>> Servicios hycom</label><br>
+                                <div id="hycomcont"></div>
                                 <input type="checkbox" id="estudio" checked/>
                                 <label for="check1">Zona de estudio</label><br>
                             </div>
@@ -126,7 +127,7 @@
                                 <input type="checkbox" id="sentinelfal" value="1"/>
                                 <label for="check1">Sentinel falso color (B8A,B05,B04)</label><br>
                                 <input type="checkbox" id="gebco" checked/>
-                                <label for="check1">Mapa Batimetrico GEBCO</label><br>
+                                <label for="check1">Mapa Batimétrico GEBCO</label><br>
                             </div>
                             <div class="BaseMap">
                                 <h1>Mapas Base</h1>
@@ -283,6 +284,8 @@
             // $('img').remove('.imgest');
         }
     });
+
+    
     
 
     
