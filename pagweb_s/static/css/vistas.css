@@ -44,7 +44,7 @@ body{
 }
 
 .carousel .carousel-item img{
-    width: 100%;
+    /* width: 50em; */
     position:absolute;
     border-radius: 5px;
 }

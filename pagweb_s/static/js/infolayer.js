@@ -75,7 +75,7 @@ function infolay(){
                             'EPSG:4326',
                             {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50}
                         );
-                        alert(evt.coordinate);
+                        // alert(evt.coordinate);
                         document.getElementById('infolay').innerHTML = '<iframe seamless id="24pc" src="' + url + '"></iframe>';
                     break;
                     case cap=='estados':

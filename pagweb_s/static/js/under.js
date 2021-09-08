@@ -14,7 +14,7 @@ function under(){
     $('#icons').click(function(){
         $('.conten').animate({left: '-100%'},2000);
         $('#icons').animate({left: '-100%'},2200);
-        $('#fig').animate({left: '0%'},1500);
+        $('#fig').animate({left: '0%'},1000);
     });
     document.getElementById("defaultOpen").click();
 
@@ -39,7 +39,6 @@ function under(){
                 // var imgest =  "static/img/Simbo/estados.png";
                 if($(this).is(':checked')){
                     map.addLayer(wmsLayerHYCOMvel);
-                    alert('hola')
                     // $('#imagen').append('<img src="'+imgest+'" class="imgest"/>');
                 } else {
                     map.removeLayer(wmsLayerHYCOMvel);
@@ -59,7 +58,7 @@ function under(){
         visible: true,
         url: 'https://wms.hycom.org/thredds/wms/GLBy0.08/latest?crs=EPSG:4326&dpiMode=7&format=image/png&layers=water_temp&styles',
         
-        serverType: 'HYCOM'
+        serverType: 'mapserver'
         });
 
     var wmsLayerHYCOMtem = new  ol.layer.Tile({
@@ -73,7 +72,7 @@ function under(){
         visible: true,
         url: 'https://wms.hycom.org/thredds/wms/GLBy0.08/latest?crs=EPSG:4326&dpiMode=7&format=image/png&layers=sea_water_velocity&styles',
         
-        serverType: 'HYCOM'
+        serverType: 'mapserver'
         });
 
     var wmsLayerHYCOMvel = new  ol.layer.Tile({
@@ -100,3 +99,16 @@ function openc(evt, act) {
     evt.currentTarget.className += "active";
 }
 
+//función de descarga de info
+
+function download(){
+    
+    document.getElementById("downloadpage").style.display = "block";
+
+    return true;
+  
+}
+
+function salida(){
+    document.getElementById("downloadpage").style.display = "none";
+}
