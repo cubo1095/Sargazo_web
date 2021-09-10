@@ -26,6 +26,6 @@ function sargazo(){
         }
     });
     
-   sargazoultimo = '03-09-2021';
+   
    
 }
