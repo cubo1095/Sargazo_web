@@ -97,9 +97,11 @@ $(document).ready(searchsargazo);
 
             }
             
-            
+            return conta=1, fecha_1, fecha_2;
             
         });
+
+
         //Función busqueda por área
         $('#ejecutar').click(function(){
             signo = $('#mayormenor').val();
@@ -110,8 +112,8 @@ $(document).ready(searchsargazo);
         })
             
         //Función de rectángulo
-        var contador = 1; 
-        $('#fig2').click(function(){
+        
+        $('#fig2').click(function(conta, fecha_1,fecha_2){
             //Poligono
             boxControl =new ol.interaction.DragBox ({ 
                 condition: ol.events.condition.always, 
@@ -133,9 +135,9 @@ $(document).ready(searchsargazo);
                         geometry: new ol.geom.Polygon([a])
                     });
 
-                // poligono.getGeometry().transform('EPSG:4326','EPSG:3857' );
-                // b = poligono.getGeometry().getCoordinates();
-                alert(a);
+                
+                var polygonperi = p1[0]+" "+p1[1]+","+p2[0]+" "+p2[1]+","+p3[0]+" "+p3[1]+","+p4[0]+" "+p4[1]+","+p1[0]+" "+p1[1];
+                
                 var polySource= new ol.source.Vector({
                         features: [poligono]
                     });
@@ -144,9 +146,21 @@ $(document).ready(searchsargazo);
                         source: polySource
                 });
                 map.addLayer(polyLayer);
+                alert(conta.val())
+                cql_filter = "WITHIN (geom, POLYGON (("+polygonperi+"))) and fechadia = '2021-09-03'"
+                if(conta==1){
+                    cql_fil = "fechadia between '"+fecha_1+"' and '"+fecha_2+"' and WITHIN (geom, POLYGON (("+polygonperi+")))"
+                }else{
+                    wmsLayersargazo.getSource().updateParams({'LAYERS': 'sargazo:sargazo',  'CQL_FILTER': cql_filter});
+                }
+                
+        
+                
             });
         })
         
 
         
     }
+
+    

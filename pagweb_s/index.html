@@ -160,7 +160,7 @@
                             <h1>Simbología</h1>
                             <div id="imagen">
                                 <img src="static/img/Simbo/estados.png" class="imgest"/>
-                                <img src="static/img/Simbo/Sargazo_dis.png" class="imgsard">
+                                <img src="http://132.247.103.145:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.1.0&FORMAT=image/png&WIDTH=90&HEIGHT=20&LAYER=sargazo:sargazo&legend_options=fontName:Times%20New%20Roman;fontColor:0xFFFFFF;fontSize:14;labelMargin:8;hideEmptyRules;bgcolor:0x252424" class="imgsard">
                             </div>
                         </div>                                
                 <!-- </div> -->
@@ -190,9 +190,9 @@
         <div id="fig"><img src="static/img/64px/flecha.png"></div>
     </abbr>
     
-    <!-- <abbr title="Información por rectangulo">    
+    <abbr title="Información por rectangulo">    
         <div id="fig2"><img src="static/img/64px/rectangle.png"></div>
-    </abbr> -->
+    </abbr>
    
     
     
@@ -217,8 +217,9 @@
         view: new ol.View({//Creamos vista del mapa
             center: ol.proj.transform([-87,20],'EPSG:4326', 'EPSG:3857'),//Cambiamos proyección a WGS84
             zoom: 2,
-            minZoom: 8,
-            extend: ol.proj.transform([-80, 17.5, -92, 22],'EPSG:4326', 'EPSG:3857')
+            minZoom: 7.5,
+            maxZoom: 22,
+            extent: ol.proj.transformExtent([-92, 17.5, -80, 22], 'EPSG:4326','EPSG:3857')
         })//Cerramos view
     });//Cerramos mapa
 
@@ -262,14 +263,17 @@
 
     //Layer Sargazo
     cql_date= "fechadia="+sargazoultimo;
-    var wmsSourcesargazo = new ol.source.TileWMS({
+    var wmsSourcesargazo = new ol.source.ImageWMS({
         visible: true,
+        ratio: 1,
         url: 'http://132.247.103.145:8080/geoserver//wms',
-        params: {'LAYERS':'	sargazo:sargazo','TILED': true,'CQL_FILTER': cql_date},
-        serverType: 'geoserver'
+        params: {'LAYERS':'sargazo:sargazo','CQL_FILTER': cql_date},
+        serverType: 'geoserver',
+        version: '1.1.1',
+        
         });
 
-    var wmsLayersargazo = new  ol.layer.Tile({
+    var wmsLayersargazo = new  ol.layer.Image({
         source: wmsSourcesargazo,
         zIndex: 1
     });
@@ -470,18 +474,21 @@
     var wmsSourceSentinel = new ol.source.TileWMS({
         visible: true,
         url: 'http://132.247.103.145:8080/geoserver/sargazo/wms',
-        params: {'LAYERS': 'sargazo:latest_TC','TILED': true},
+        params: {'LAYERS': 'sargazo:latest_TC'},
         serverType: 'geoserver',
-        });
+        preload: 1,
+    });
 
     var wmsLayerSentinel = new  ol.layer.Tile({
         source: wmsSourceSentinel,
         zIndex: 0.8
     });
+    
     imgsentineltc = "static/img/Simbo/SentinelTC.png";
     $('#sentineltc').click(function(){
         // heightsimbo(); //Se encuentra en el script slideimg.js y ajusta la altura de la caja de simbología
         if($(this).is(':checked')){
+            // wmsLayerSentinel.getSource().updateParams({'LAYERS': 'sargazo:latest_TC','TILED': true})
             map.addLayer(wmsLayerSentinel)
             $('#imagen').append('<img src="'+imgsentineltc+'" class="imgsentineltruec"/>');
         } else {
@@ -494,7 +501,7 @@
      var wmsSourceSentinelfal = new ol.source.TileWMS({
         visible: true,
         url: 'http://132.247.103.145:8080/geoserver/sargazo/wms',
-        params: {'LAYERS': 'sargazo:latest_sargazo','TILED': true},
+        params: {'LAYERS': 'sargazo:latest_sargazo'},
         serverType: 'geoserver',
         });
 
