@@ -97,7 +97,8 @@ $(document).ready(searchsargazo);
 
             }
             
-            return conta=1, fecha_1, fecha_2;
+            conta=1;
+            return conta, fecha_1, fecha_2;
             
         });
 
@@ -147,9 +148,9 @@ $(document).ready(searchsargazo);
                 });
                 map.addLayer(polyLayer);
                 // alert(conta.val())
-                cql_filter = "WITHIN (geom, POLYGON (("+polygonperi+"))) and fechadia = '2021-09-03'"
+                cql_filter = "WITHIN (geom, POLYGON (("+polygonperi+"))) and fechadia = '2021-09-03'";
                 if(conta==1){
-                    cql_fil = "fechadia between '"+fecha_1+"' and '"+fecha_2+"' and WITHIN (geom, POLYGON (("+polygonperi+")))"
+                    cql_fil = "fechadia between '"+fecha_1+"' and '"+fecha_2+"' and WITHIN (geom, POLYGON (("+polygonperi+")))";
                     alert('con fecha')
                 }else{
                     wmsLayersargazo.getSource().updateParams({'LAYERS': 'sargazo:sargazo',  'CQL_FILTER': cql_filter});
