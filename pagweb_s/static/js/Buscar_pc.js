@@ -146,12 +146,14 @@ $(document).ready(searchsargazo);
                         source: polySource
                 });
                 map.addLayer(polyLayer);
-                alert(conta.val())
+                // alert(conta.val())
                 cql_filter = "WITHIN (geom, POLYGON (("+polygonperi+"))) and fechadia = '2021-09-03'"
                 if(conta==1){
                     cql_fil = "fechadia between '"+fecha_1+"' and '"+fecha_2+"' and WITHIN (geom, POLYGON (("+polygonperi+")))"
+                    alert('con fecha')
                 }else{
                     wmsLayersargazo.getSource().updateParams({'LAYERS': 'sargazo:sargazo',  'CQL_FILTER': cql_filter});
+                    conta=0;
                 }
                 
         

@@ -278,6 +278,7 @@
         zIndex: 1
     });
     map.addLayer(wmsLayersargazo);
+    var conta=0;
 
     //Layer Gebco
     var wmsSourceGEBCO = new ol.source.TileWMS({
@@ -321,18 +322,18 @@
     map.addLayer(wmsLayerzona);            
     
     //Layer Nidos Tortugas
-    var wmsSourcenidos = new ol.source.TileWMS({
-        visible: true,
-        url: 'http://localhost:8088/geoserver/Prueba/wms',
-        params: {'LAYERS':'	Prueba:nidostortu','TILED': true},
-        serverType: 'geoserver'
-        });
+    // var wmsSourcenidos = new ol.source.TileWMS({
+    //     visible: true,
+    //     url: 'http://localhost:8088/geoserver/Prueba/wms',
+    //     params: {'LAYERS':'	Prueba:nidostortu','TILED': true},
+    //     serverType: 'geoserver'
+    //     });
 
-    var wmsLayernidos = new  ol.layer.Tile({
-        source: wmsSourcenidos,
-        zIndex: 1
-    });
-    map.addLayer(wmsLayernidos);
+    // var wmsLayernidos = new  ol.layer.Tile({
+    //     source: wmsSourcenidos,
+    //     zIndex: 1
+    // });
+    // map.addLayer(wmsLayernidos);
 
     //Layer Áreas Naturales Protegidas
     var wmsSourceANP = new ol.source.TileWMS({
