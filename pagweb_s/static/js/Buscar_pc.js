@@ -114,44 +114,68 @@ $(document).ready(searchsargazo);
             
         //Función de rectángulo
         
-        $('#fig2').click(function(conta, fecha_1,fecha_2){
+        $('#fig2').click(function(){
             //Poligono
-            boxControl =new ol.interaction.DragBox ({ 
-                condition: ol.events.condition.always, 
-                style: new ol.style.Style ({ 
-                    stroke: new ol.style.Stroke({color: [0, 255, 0, 1]}) 
-                }) 
+            // const source = new ol.source.Vector();
+            boxControl =new ol.interaction.DragBox({ 
+                condition: ol.events.condition.always
+                // type: 'Polygon'
+                
             }); 
+            
+            // const modify = new ol.interaction.Modify({source: source});
+            // map.addInteraction(modify);
+            // snap = new ol.interaction.Snap({source: source});
+            // map.addInteraction(snap);
             map.addInteraction(boxControl);
             
-            boxControl.on('boxend', function () { 
-                var a= boxControl.getGeometry().transform('EPSG:3857','EPSG:4326').getCoordinates(); 
+            boxControl.on('boxend', function () {
+                var b = boxControl.getGeometry().getCoordinates();
+                let a= boxControl.getGeometry().transform('EPSG:3857','EPSG:4326').getCoordinates(); 
                 p1 = a[0][0];
                 p2 = a[0][1];
                 p3 = a[0][2];
                 p4 = a[0][3];
-
                 
-                var poligono = new ol.Feature({
-                        geometry: new ol.geom.Polygon([a])
+                // var p = "[["+p1+"], ["+p2+"], ["+p3+"], ["+p4+"], ["+p1+"]]"
+                console.log(a[0])
+                
+                // geom = geom.transform("EPSG:4326", map.getView().getProjection());
+                let poligono = new ol.Feature({
+                        geometry: new ol.geom.Polygon(a[0])
                     });
 
-                
-                var polygonperi = p1[0]+" "+p1[1]+","+p2[0]+" "+p2[1]+","+p3[0]+" "+p3[1]+","+p4[0]+" "+p4[1]+","+p1[0]+" "+p1[1];
-                
-                var polySource= new ol.source.Vector({
-                        features: [poligono]
-                    });
+                var source= new ol.source.Vector({});
+                source.addFeature(poligono);
 
                 var polyLayer = new ol.layer.Vector({
-                        source: polySource
+                        source: source,
+                        style: new ol.style.Style({
+                            fill: new ol.style.Fill({
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }),
+                            stroke: new ol.style.Stroke({
+                                color: 'red',
+                                width: 2
+                            }),
+                            image: new ol.style.Circle({
+                                radius: 10,
+                                fill: new ol.style.Fill({
+                                    color: '#ffcc33'
+                                })
+                            })
+                        })
                 });
+                // alert(polylayer)
                 map.addLayer(polyLayer);
-                // alert(conta.val())
+
+                var polygonperi = p1[0]+" "+p1[1]+","+p2[0]+" "+p2[1]+","+p3[0]+" "+p3[1]+","+p4[0]+" "+p4[1]+","+p1[0]+" "+p1[1];
+                // alert(polygonperi)
                 cql_filter = "WITHIN (geom, POLYGON (("+polygonperi+"))) and fechadia = '2021-09-03'";
                 if(conta==1){
-                    cql_fil = "fechadia between '"+fecha_1+"' and '"+fecha_2+"' and WITHIN (geom, POLYGON (("+polygonperi+")))";
-                    alert('con fecha')
+                    cql_filter = "fechadia between '"+fecha_1+"' and '"+fecha_2+"' and WITHIN (geom, POLYGON (("+polygonperi+")))";
+                    wmsLayersargazo.getSource().updateParams({'LAYERS': 'sargazo:sargazo',  'CQL_FILTER': cql_filter});
+                    
                 }else{
                     wmsLayersargazo.getSource().updateParams({'LAYERS': 'sargazo:sargazo',  'CQL_FILTER': cql_filter});
                     conta=0;

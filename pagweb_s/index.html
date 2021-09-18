@@ -449,7 +449,7 @@
     iconmarcadores.push(iconmarcador);
     
     var vecSource = new ol.source.Vector({
-    features: iconmarcadores //add an array of features
+        features: iconmarcadores //add an array of features
     });
 
     var iconStyle = new ol.style.Style({
@@ -465,8 +465,8 @@
 
 
     var vecLayer = new ol.layer.Vector({
-    source: vecSource,
-    style: iconStyle
+        source: vecSource,
+        style: iconStyle
     });
     
     map.addLayer(vecLayer);
