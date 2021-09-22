@@ -185,7 +185,7 @@ $(document).ready(medir);
 
                     var polygonperi = p1[0]+" "+p1[1]+","+p2[0]+" "+p2[1]+","+p3[0]+" "+p3[1]+","+p4[0]+" "+p4[1]+","+p1[0]+" "+p1[1];
                     // alert(polygonperi)
-                    cql_filter = "WITHIN (geom, POLYGON (("+polygonperi+"))) and fechadia = '2021-09-03'";
+                    cql_filter = "WITHIN (geom, POLYGON (("+polygonperi+"))) and fechadia = '2021-09-08'";
                     if(conta==1){
                         cql_filter = "fechadia between '"+fecha_1+"' and '"+fecha_2+"' and WITHIN (geom, POLYGON (("+polygonperi+")))";
                         wmsLayersargazo.getSource().updateParams({'LAYERS': 'sargazo:sargazo',  'CQL_FILTER': cql_filter});
@@ -272,13 +272,13 @@ $(document).ready(medir);
                  * Message to show when the user is drawing a polygon.
                  * @type {string}
                  */
-                const continuePolygonMsg = 'Click to continue drawing the polygon';
+                const continuePolygonMsg = 'Click para continuar al polygono';
 
                 /**
                  * Message to show when the user is drawing a line.
                  * @type {string}
                  */
-                const continueLineMsg = 'Click to continue drawing the line';
+                const continueLineMsg = 'Click para continuar la línea';
 
                 /**
                  * Handle pointer move.
