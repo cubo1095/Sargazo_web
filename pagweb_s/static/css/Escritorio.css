@@ -392,25 +392,44 @@ div#Capas p{
     border-radius: 5px;
 }
 
-/***************Info rectangulo *************/
-#fig2{
+/***************Info rectangulo y Distancia*************/
+#barraherra{
     position: absolute;
-    right: 3%;
+    right: 2%;
     z-index: 1;
     filter: invert(1);
-    border: 2px solid transparent;
-    top:11em;;
-    background: white;
-       
+    border: 2px solid black;
+    border-radius: 0.5em;
+    top:9em;
+    padding: 0.1em;
+    background: rgba(218, 219, 219,0.5);
+    
 }
-#fig2 img{
+#fig2,#fig3{
+    height: 34px;
+}
+#fig2 input, #fig3 input{
+    display: none;
+}   
+
+#fig2 img, #fig3 img{
     width: 32px;
+    padding: 0.2em;
 }
 
-#fig2:hover{
+#fig2:hover, #fig3:hover{
+    border: 1px solid;
+    border-color: black;
+    background: rgba(218, 219, 219);
+    border-radius: 5px;
+}
+
+#fig2 input:checked  + img, #fig3 input:checked  + img {
     border: 2px solid;
     border-color: black;
     border-radius: 5px;
+    border-radius: 5px;
+    background: rgba(218, 219, 219);
 }
 /********************Simbología**********************/
 
@@ -641,4 +660,51 @@ iframe {
     position: fixed;
     text-align: center;
     padding: 1% 0 1% 0;
+  }
+
+  /**********************************Medir******************************/
+
+  .ol-tooltip {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    color: white;
+    padding: 4px 8px;
+    opacity: 0.7;
+    white-space: nowrap;
+    font-size: 12px;
+    cursor: default;
+    user-select: none;
+  }
+  .ol-tooltip-measure {
+    opacity: 1;
+    font-weight: bold;
+  }
+  .ol-tooltip-static {
+    background-color: #ffcc33;
+    color: black;
+    border: 1px solid white;
+  }
+  .ol-tooltip-measure:before,
+  .ol-tooltip-static:before {
+    border-top: 6px solid rgba(0, 0, 0, 0.5);
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    margin-left: -7px;
+    left: 50%;
+  }
+  .ol-tooltip-static:before {
+    border-top-color: #ffcc33;
+  }
+
+  .medir{
+    z-index: 2;
+    display: block;
+    position:absolute;
+    background: white;
+    right: 5em;
+    top: 20em;
   }

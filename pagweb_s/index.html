@@ -78,7 +78,7 @@
     
                             <h1> Consulta por Área de Sargazo</h1>
                             <div id="busqueda" class="busqueda">
-                                <label for="" id="label"> Área en kilometros cuadrados</label>
+                                <label for="mayormenor" id="label"> Área en kilometros cuadrados</label>
                                 <select id="mayormenor">
                                     <option value=">">Mayor que...</option>
                                     <option value=">=">Mayor igual que...</option>
@@ -190,10 +190,21 @@
         <div id="fig"><img src="static/img/64px/flecha.png"></div>
     </abbr>
     
-    <abbr title="Información por rectangulo">    
-        <div id="fig2"><img src="static/img/64px/rectangle.png"></div>
+    <abbr title="Información por rectangulo">
+        <div id="barraherra">    
+            <div id="fig2"><label><input type="checkbox" id="fch2"/><img src="static/img/64px/rectangle.png"></label></div>
+            <div id="fig3"><label><input type="checkbox" id="fch3"/><img src="static/img/SVG/regla.svg"></label></div>
+        </div>
     </abbr>
-   
+    <div class="medir">
+        <form class="form-inline">
+            <label for="type">Measurement type &nbsp;</label>
+            <select id="type">
+              <option value="length">Length (LineString)</option>
+              <option value="area">Area (Polygon)</option>
+            </select>
+          </form>
+    </div>
     
     
     

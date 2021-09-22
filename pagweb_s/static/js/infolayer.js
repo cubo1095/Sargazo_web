@@ -60,7 +60,6 @@ function infolay(){
             
             var view1 = new ol.View({
                 center: ol.proj.transform([-90, 20], 'EPSG:4326', 'EPSG:3857'),//Cambiamos proyección a WGS84
-                zoom: 4.5
             });
             map.on('singleclick', function (evt) {
                 document.getElementById('infolay').innerHTML = 'Espere un momento por favor';
