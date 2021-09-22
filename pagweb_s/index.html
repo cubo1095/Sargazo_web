@@ -160,7 +160,7 @@
                             <h1>Simbología</h1>
                             <div id="imagen">
                                 <img src="static/img/Simbo/estados.png" class="imgest"/>
-                                <img src="http://132.247.103.145:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.1.0&FORMAT=image/png&WIDTH=90&HEIGHT=20&LAYER=sargazo:sargazo&legend_options=fontName:Times%20New%20Roman;fontColor:0xFFFFFF;fontSize:14;labelMargin:8;hideEmptyRules;bgcolor:0x252424" class="imgsard">
+                                <img src="static/img/Simbo/Sargazo_dis.png" class="imgsard">
                             </div>
                         </div>                                
                 <!-- </div> -->
@@ -190,18 +190,22 @@
         <div id="fig"><img src="static/img/64px/flecha.png"></div>
     </abbr>
     
-    <abbr title="Información por rectangulo">
-        <div id="barraherra">    
+    
+    <div id="barraherra">   
+        <abbr title="Información por rectangulo"> 
             <div id="fig2"><label><input type="checkbox" id="fch2"/><img src="static/img/64px/rectangle.png"></label></div>
+        </abbr>
+        <abbr title="Herramienta para medir">
             <div id="fig3"><label><input type="checkbox" id="fch3"/><img src="static/img/SVG/regla.svg"></label></div>
-        </div>
-    </abbr>
+        </abbr>
+    </div>
+    
     <div class="medir">
         <form class="form-inline">
-            <label for="type">Measurement type &nbsp;</label>
+            <label for="type">Seleccione el tipo de medida &nbsp;</label><br>
             <select id="type">
-              <option value="length">Length (LineString)</option>
-              <option value="area">Area (Polygon)</option>
+              <option value="length">Distancia</option>
+              <option value="area">Área</option>
             </select>
           </form>
     </div>
@@ -286,7 +290,7 @@
 
     var wmsLayersargazo = new  ol.layer.Image({
         source: wmsSourcesargazo,
-        zIndex: 1
+        zIndex: 1.2
     });
     map.addLayer(wmsLayersargazo);
     var conta=0;
@@ -386,13 +390,13 @@
     });
 
     $('#hum').click(function(){
-        var imganp = "static/img/Simbo/ANP.png";//jfkaljsdkfad
+        var imghum = "static/img/Simbo/humedales.png";//jfkaljsdkfad
         if($(this).is(':checked')){
             map.addLayer(wmsLayerhumedales);
-            // $('#imagen').append('<img src="'+imganp+'" class="imganp"/>');
+            $('#imagen').append('<img src="'+imghum+'" class="imghum"/>');
         } else {
             map.removeLayer(wmsLayerhumedales);
-            // $('img').remove('.imganp');
+            $('img').remove('.imghum');
         }
     });
 
@@ -436,13 +440,13 @@
     });
 
     $('#insu').click(function(){
-        var imganp = "static/img/Simbo/ANP.png";//jfkaljsdkfad
+        var imgisl = "static/img/Simbo/islas.png";//jfkaljsdkfad
         if($(this).is(':checked')){
             map.addLayer(wmsLayerinsu);
-            // $('#imagen').append('<img src="'+imganp+'" class="imganp"/>');
+            $('#imagen').append('<img src="'+imgisl+'" class="imgisla"/>');
         } else {
             map.removeLayer(wmsLayerinsu);
-            // $('img').remove('.imganp');
+            $('img').remove('.imgisla');
         }
     });
 

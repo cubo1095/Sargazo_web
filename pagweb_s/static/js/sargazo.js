@@ -16,13 +16,13 @@ function sargazo(){
  
 
     $('#estudio').click(function(){
-        // var imgsargazo = "static/img/Simbo/sargazo.png";
+        var imgestudio = "static/img/Simbo/zona.png";
         if($(this).is(':checked')){
             map.addLayer(wmsLayerzona);
-            // $('#imagen').append('<img src="'+imgsargazo+'" class="imgsar"/>');
+            $('#imagen').append('<img src="'+imgestudio+'" class="imgzona"/>');
         } else {
             map.removeLayer(wmsLayerzona);
-            // $('img').remove('.imgsar');
+            $('img').remove('.imgzona');
         }
     });
     

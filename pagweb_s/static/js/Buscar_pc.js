@@ -215,7 +215,8 @@ $(document).ready(medir);
         
         $('#fch3').click(function(){
             if($(this).is(':checked')){
-                alert("se encendió");
+                // alert("se encendió");
+                $('.medir').animate({right: '5em'});
                 const source = new ol.source.Vector();
 
                 const vector = new ol.layer.Vector({
@@ -469,12 +470,13 @@ $(document).ready(medir);
                 addInteractions();
                 map.addLayer(vector);
             } else {
-               alert("se desactivo");
+            //    alert("se desactivo");
                
             //    map.removeInteraction(dibujo);
                
                 
-                map.removeOverlay(measureTooltip);
+                // map.removeOverlay(measureTooltip);
+                $('.medir').animate({right: '-100%'});
             }
 
             
